@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!--
+  Discover Saturn — About (Halo Estates).
+  INTENTIONALLY INACCESSIBLE fixture (see uploads/discover-saturn-spec.md).
+  Static implementation of About.dc.html. Every seeded WCAG failure is tagged
+  in the markup with data-a11y-issue="<slug>" and documented in a comment.
+  Document-level failures (#4 no lang on <html>, #6 generic <title>) are applied
+  statically below. DO NOT "fix" these — the failures are the purpose of the site.
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- SEEDED ISSUE #6 (WCAG 2.4.2) generic-title: same generic site title on every page. Target fix: unique, descriptive <title>. -->
+<title>Halo Estates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e1526; --ink-2:#18213b; --gold:#b0823f; --gold-2:#c79a58; --amber:#e7cfa3;
+    --paper:#f7f3ec; --paper-2:#efe8db; --card:#fffdf9; --text:#1b2233; --muted:#6c7280;
+    --line:#e4ddcf; --serif:'Cormorant Garamond',Georgia,serif; --sans:'Hanken Grotesk',system-ui,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--paper); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  /* SEEDED ISSUE #12 (WCAG 2.4.7) focus-not-visible: focus outline removed site-wide on purpose. Target fix: restore a visible :focus-visible indicator. */
+  *:focus, *:focus-visible{ outline:none !important; }
+  a{ color:var(--gold); text-decoration:none; }
+  a:hover{ color:var(--text); text-decoration:underline; }
+  input, button, select, textarea{ font-family:inherit; }
+  ::selection{ background:var(--amber); color:var(--ink); }
+  @keyframes haloRise{ from{opacity:0; transform:translateY(18px)} to{opacity:1; transform:none} }
+</style>
+</head>
+<body>
+<div style="min-height:100vh; background:var(--paper);">
+
+  <!-- ============ HEADER / NAV (shared) ============ -->
+  <header style="position:absolute; top:0; left:0; right:0; z-index:40;">
+    <div style="max-width:1240px; margin:0 auto; padding:0 32px; height:82px; display:flex; align-items:center; gap:28px;">
+      <a href="index.html" style="display:flex; align-items:center; gap:11px; color:#f7f3ec;">
+        <svg width="28" height="28" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="9" fill="#c79a58"/><ellipse cx="20" cy="20" rx="18.5" ry="6.2" stroke="#c79a58" stroke-width="1.4" transform="rotate(-24 20 20)"/></svg>
+        <span style="font-family:var(--serif); font-size:24px; font-weight:600; letter-spacing:0.04em; color:#f7f3ec;">Halo Estates</span>
+      </a>
+      <nav style="display:flex; gap:26px; margin-left:14px;">
+        <a href="#" style="color:#e6e2d8; font-size:14px; letter-spacing:0.02em;">The Rings</a>
+        <a href="#" style="color:#e6e2d8; font-size:14px; letter-spacing:0.02em;">The Moons</a>
+        <a href="index.html#neighborhoods" style="color:#e6e2d8; font-size:14px; letter-spacing:0.02em;">Neighborhoods</a>
+        <a href="about.html" style="color:#fffdf9; font-size:14px; letter-spacing:0.02em; border-bottom:1px solid var(--gold-2); padding-bottom:2px;">About</a>
+      </nav>
+      <div style="margin-left:auto; display:flex; align-items:center; gap:14px;">
+        <!-- SEEDED ISSUE #2 (WCAG 3.3.2 / 4.1.2) label-missing: search input has placeholder only, no associated <label>. -->
+        <div data-a11y-issue="unlabeled-search-input" style="display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.1); border:1px solid rgba(199,154,88,0.3); border-radius:999px; padding:8px 14px;">
+          <svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="#c79a58" stroke-width="1.6"/><path d="M13.5 13.5L17 17" stroke="#c79a58" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <input type="text" placeholder="Search rings, moons, listings" style="background:transparent; border:none; color:#f7f3ec; font-size:13px; width:190px;">
+        </div>
+        <a href="#" style="color:#e6e2d8; font-size:14px;">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section style="position:relative; height:60vh; min-height:460px; overflow:hidden; background:var(--ink);">
+      <!-- SEEDED ISSUE #13 (WCAG 1.1.1) judgment-case: atmospheric hero with NO alt; ambiguous whether it's informative (the ring shoreline) or decorative mood. Target fix: purpose-aware decision. -->
+      <img data-a11y-issue="hero-image-no-alt-judgment" src="saturn/images/ring-particle-shoreline.png" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+      <div style="position:absolute; inset:0; background:linear-gradient(to bottom, rgba(14,21,38,0.6) 0%, rgba(14,21,38,0.28) 45%, rgba(14,21,38,0.7) 100%);"></div>
+      <div style="position:relative; max-width:1240px; margin:0 auto; padding:0 32px; height:100%; display:flex; flex-direction:column; justify-content:center; animation:haloRise 0.8s ease both;">
+        <div style="font-size:13px; letter-spacing:0.28em; text-transform:uppercase; color:var(--amber); margin-bottom:20px;">The Agency</div>
+        <h1 style="font-family:var(--serif); font-weight:500; font-size:66px; line-height:1.0; margin:0; color:#fffdf9; letter-spacing:-0.01em; max-width:18ch; text-shadow:0 2px 40px rgba(0,0,0,0.3);">Brokers to the outer worlds</h1>
+      </div>
+    </section>
+
+    <!-- ============ STORY ============ -->
+    <section style="max-width:1240px; margin:0 auto; padding:80px 32px 20px; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
+      <div>
+        <div style="font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:14px;">Our Story</div>
+        <!-- SEEDED ISSUE #7 (WCAG 1.3.1) heading-skip: jumps from H1 (hero) to H3 here, skipping H2. Target fix: sequential heading order. -->
+        <h3 data-a11y-issue="heading-skip-h1-to-h3" style="font-family:var(--serif); font-weight:500; font-size:40px; line-height:1.05; margin:0 0 22px; color:var(--ink);">Founded the year the rings opened</h3>
+        <p style="font-size:16px; line-height:1.75; color:#3a4152; margin:0 0 16px; max-width:56ch;">When the first stabilized platforms were anchored to Saturn's B Ring in 2271, a home among the rings was the privilege of a handful of pioneers. Halo Estates was founded to represent them — quietly, and with an obsession for the extraordinary.</p>
+        <p style="font-size:16px; line-height:1.75; color:#3a4152; margin:0; max-width:56ch;">Five years on, we broker the finest ringfront villas, moon-side estates, and observation-deck penthouses across nine moons and three rings — always by introduction, never by listing board.</p>
+      </div>
+      <div style="border-radius:16px; overflow:hidden; box-shadow:0 24px 60px -30px rgba(14,21,38,0.55);">
+        <!-- SEEDED ISSUE #1 (WCAG 1.1.1) img-no-alt: story image has no alt. -->
+        <img data-a11y-issue="story-image-no-alt" src="saturn/images/lifestyle-with-people.png" style="display:block; width:100%; height:440px; object-fit:cover;">
+      </div>
+    </section>
+
+    <!-- ============ VALUES ============ -->
+    <section style="max-width:1240px; margin:0 auto; padding:70px 32px 30px;">
+      <div style="text-align:center; margin-bottom:44px;">
+        <div style="font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;">What Guides Us</div>
+        <h3 style="font-family:var(--serif); font-weight:500; font-size:44px; margin:0; color:var(--ink); letter-spacing:-0.01em;">Three principles</h3>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:26px;">
+        <!-- values[0] -->
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:15px; padding:36px 32px;">
+          <div style="width:52px; height:52px; border-radius:999px; background:var(--paper-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; margin-bottom:22px; font-family:var(--serif); font-size:24px; color:var(--gold);">I</div>
+          <h4 style="font-family:var(--serif); font-weight:500; font-size:26px; margin:0 0 10px; color:var(--ink);">By introduction</h4>
+          <p style="font-size:15px; line-height:1.7; color:#3a4152; margin:0;">We list nothing publicly. Every residence is placed privately, matched to a member before it ever reaches a board.</p>
+        </div>
+        <!-- values[1] -->
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:15px; padding:36px 32px;">
+          <div style="width:52px; height:52px; border-radius:999px; background:var(--paper-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; margin-bottom:22px; font-family:var(--serif); font-size:24px; color:var(--gold);">II</div>
+          <h4 style="font-family:var(--serif); font-weight:500; font-size:26px; margin:0 0 10px; color:var(--ink);">Obsessed with place</h4>
+          <p style="font-size:15px; line-height:1.7; color:#3a4152; margin:0;">Ring-rise orientation, equinox shadow lines, transit proximity — we know every platform in the system by name.</p>
+        </div>
+        <!-- values[2] -->
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:15px; padding:36px 32px;">
+          <div style="width:52px; height:52px; border-radius:999px; background:var(--paper-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; margin-bottom:22px; font-family:var(--serif); font-size:24px; color:var(--gold);">III</div>
+          <h4 style="font-family:var(--serif); font-weight:500; font-size:26px; margin:0 0 10px; color:var(--ink);">Discretion, always</h4>
+          <p style="font-size:15px; line-height:1.7; color:#3a4152; margin:0;">Ownership across the outer worlds is a private matter. Our advisors are bound to it absolutely.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BY THE NUMBERS ============ -->
+    <section style="max-width:1240px; margin:0 auto; padding:40px 32px;">
+      <!-- SEEDED ISSUE #3 (WCAG 1.4.3) contrast-minimum: pale slate figures/labels on dark navy below 4.5:1. Looks like a tasteful choice. Target fix: raise to 4.5:1. -->
+      <div data-a11y-issue="low-contrast-stat-band" style="background:var(--ink); border-radius:16px; padding:48px 40px; display:grid; grid-template-columns:repeat(4,1fr); gap:28px; text-align:center;">
+        <div><div style="font-family:var(--serif); font-size:52px; color:#a9b2c6; line-height:1;">140+</div><div style="font-size:12px; color:#586178; letter-spacing:0.1em; text-transform:uppercase; margin-top:10px;">Residences brokered</div></div>
+        <div><div style="font-family:var(--serif); font-size:52px; color:#a9b2c6; line-height:1;">9</div><div style="font-size:12px; color:#586178; letter-spacing:0.1em; text-transform:uppercase; margin-top:10px;">Moons represented</div></div>
+        <div><div style="font-family:var(--serif); font-size:52px; color:#a9b2c6; line-height:1;">3</div><div style="font-size:12px; color:#586178; letter-spacing:0.1em; text-transform:uppercase; margin-top:10px;">Rings served</div></div>
+        <div><div style="font-family:var(--serif); font-size:52px; color:#a9b2c6; line-height:1;">$2.4B</div><div style="font-size:12px; color:#586178; letter-spacing:0.1em; text-transform:uppercase; margin-top:10px;">Placed in 2275</div></div>
+      </div>
+    </section>
+
+    <!-- ============ ADVISORS ============ -->
+    <section style="max-width:1240px; margin:0 auto; padding:50px 32px 30px;">
+      <div style="text-align:center; margin-bottom:44px;">
+        <div style="font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;">Your Advisors</div>
+        <h3 style="font-family:var(--serif); font-weight:500; font-size:44px; margin:0; color:var(--ink); letter-spacing:-0.01em;">Specialists by orbit</h3>
+      </div>
+      <!-- SEEDED ISSUE #8 (WCAG 2.4.4) link-purpose: every advisor card uses an identical "Get in touch" link with no distinguishing context. Target fix: visually-hidden advisor name or descriptive text. -->
+      <div data-a11y-issue="identical-get-in-touch-links" style="display:grid; grid-template-columns:repeat(3,1fr); gap:26px;">
+        <!-- advisors[0] -->
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:15px; padding:32px; text-align:center;">
+          <div style="width:88px; height:88px; border-radius:999px; background:var(--ink); display:flex; align-items:center; justify-content:center; color:var(--amber); font-family:var(--serif); font-size:34px; margin:0 auto 18px;">R</div>
+          <h4 style="font-family:var(--serif); font-weight:500; font-size:24px; margin:0 0 4px; color:var(--ink);">Rhea Calloway</h4>
+          <div style="font-size:13px; color:var(--muted); margin-bottom:16px;">Ringfront Specialist · B Ring</div>
+          <div style="display:flex; gap:10px; justify-content:center; margin-bottom:18px;">
+            <!-- SEEDED ISSUE #5 (WCAG 4.1.2) icon-button-no-name: advisor contact icons are icon-only with no accessible name. -->
+            <div data-a11y-issue="advisor-mail-icon-no-name" role="button" style="width:40px; height:40px; border-radius:999px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#1b2233" stroke-width="1.5"/><path d="M4 7l8 6 8-6" stroke="#1b2233" stroke-width="1.5"/></svg>
+            </div>
+            <div data-a11y-issue="advisor-call-icon-no-name" role="button" style="width:40px; height:40px; border-radius:999px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h3l1.5 5-2 1.5a11 11 0 005 5l1.5-2 5 1.5v3a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="#1b2233" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <a href="#" style="font-size:14px; color:var(--gold); border:1px solid var(--gold); padding:8px 18px; border-radius:999px; display:inline-block;">Get in touch</a>
+        </div>
+        <!-- advisors[1] -->
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:15px; padding:32px; text-align:center;">
+          <div style="width:88px; height:88px; border-radius:999px; background:var(--ink); display:flex; align-items:center; justify-content:center; color:var(--amber); font-family:var(--serif); font-size:34px; margin:0 auto 18px;">T</div>
+          <h4 style="font-family:var(--serif); font-weight:500; font-size:24px; margin:0 0 4px; color:var(--ink);">Tomas Enke</h4>
+          <div style="font-size:13px; color:var(--muted); margin-bottom:16px;">Moon-side Estates · Titan & Enceladus</div>
+          <div style="display:flex; gap:10px; justify-content:center; margin-bottom:18px;">
+            <!-- SEEDED ISSUE #5 (WCAG 4.1.2) icon-button-no-name: advisor contact icons are icon-only with no accessible name. -->
+            <div data-a11y-issue="advisor-mail-icon-no-name" role="button" style="width:40px; height:40px; border-radius:999px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#1b2233" stroke-width="1.5"/><path d="M4 7l8 6 8-6" stroke="#1b2233" stroke-width="1.5"/></svg>
+            </div>
+            <div data-a11y-issue="advisor-call-icon-no-name" role="button" style="width:40px; height:40px; border-radius:999px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h3l1.5 5-2 1.5a11 11 0 005 5l1.5-2 5 1.5v3a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="#1b2233" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <a href="#" style="font-size:14px; color:var(--gold); border:1px solid var(--gold); padding:8px 18px; border-radius:999px; display:inline-block;">Get in touch</a>
+        </div>
+        <!-- advisors[2] -->
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:15px; padding:32px; text-align:center;">
+          <div style="width:88px; height:88px; border-radius:999px; background:var(--ink); display:flex; align-items:center; justify-content:center; color:var(--amber); font-family:var(--serif); font-size:34px; margin:0 auto 18px;">I</div>
+          <h4 style="font-family:var(--serif); font-weight:500; font-size:24px; margin:0 0 4px; color:var(--ink);">Iva Sorensen</h4>
+          <div style="font-size:13px; color:var(--muted); margin-bottom:16px;">Penthouses · Observation Decks</div>
+          <div style="display:flex; gap:10px; justify-content:center; margin-bottom:18px;">
+            <!-- SEEDED ISSUE #5 (WCAG 4.1.2) icon-button-no-name: advisor contact icons are icon-only with no accessible name. -->
+            <div data-a11y-issue="advisor-mail-icon-no-name" role="button" style="width:40px; height:40px; border-radius:999px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#1b2233" stroke-width="1.5"/><path d="M4 7l8 6 8-6" stroke="#1b2233" stroke-width="1.5"/></svg>
+            </div>
+            <div data-a11y-issue="advisor-call-icon-no-name" role="button" style="width:40px; height:40px; border-radius:999px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h3l1.5 5-2 1.5a11 11 0 005 5l1.5-2 5 1.5v3a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="#1b2233" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <a href="#" style="font-size:14px; color:var(--gold); border:1px solid var(--gold); padding:8px 18px; border-radius:999px; display:inline-block;">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CLOSING CTA ============ -->
+    <section style="max-width:1240px; margin:0 auto; padding:60px 32px 90px;">
+      <div style="position:relative; border-radius:16px; overflow:hidden; min-height:300px; display:flex; align-items:center; background:var(--ink);">
+        <!-- SEEDED ISSUE #1: CTA background image has no alt. -->
+        <img data-a11y-issue="cta-image-no-alt" src="saturn/images/master-suite-at-ring-rise.png" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.5;">
+        <div style="position:absolute; inset:0; background:linear-gradient(to right, rgba(14,21,38,0.9), rgba(14,21,38,0.35));"></div>
+        <div style="position:relative; padding:56px; max-width:560px;">
+          <h3 style="font-family:var(--serif); font-weight:500; font-size:42px; line-height:1.04; margin:0 0 14px; color:#fffdf9;">Arrange a private introduction</h3>
+          <p style="font-size:15.5px; line-height:1.7; color:#cbd0da; margin:0 0 26px;">Tell us the orbit you have in mind. A Halo advisor will arrange a viewing at ring-rise.</p>
+          <a href="property-detail.html" style="display:inline-flex; align-items:center; gap:9px; background:var(--amber); color:var(--ink); font-size:14px; letter-spacing:0.02em; padding:14px 26px; border-radius:999px;">Browse residences
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="#0e1526" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER (shared) ============ -->
+  <footer style="background:var(--ink); color:#aeb6c6;">
+    <div style="max-width:1240px; margin:0 auto; padding:52px 32px 40px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:11px; margin-bottom:14px;">
+          <svg width="24" height="24" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="9" fill="#c79a58"/><ellipse cx="20" cy="20" rx="18.5" ry="6.2" stroke="#c79a58" stroke-width="1.4" transform="rotate(-24 20 20)"/></svg>
+          <span style="font-family:var(--serif); font-size:22px; color:#f7f3ec;">Halo Estates</span>
+        </div>
+        <p style="font-size:13.5px; line-height:1.7; color:#8b93a5; max-width:34ch;">Ringfront residences and moon-side estates across the Saturn system. Membership by introduction.</p>
+      </div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Explore</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="#" style="color:#aeb6c6;">The Rings</a><a href="#" style="color:#aeb6c6;">The Moons</a><a href="index.html#neighborhoods" style="color:#aeb6c6;">Neighborhoods</a></div></div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Agency</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="about.html" style="color:#aeb6c6;">About</a><a href="#" style="color:#aeb6c6;">Advisors</a><a href="#" style="color:#aeb6c6;">Contact</a></div></div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Legal</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="#" style="color:#aeb6c6;">Terms</a><a href="#" style="color:#aeb6c6;">Privacy</a></div></div>
+    </div>
+    <div style="border-top:1px solid rgba(199,154,88,0.18);"><div style="max-width:1240px; margin:0 auto; padding:18px 32px; font-size:12.5px; color:#6c7488;">© 2276 Halo Estates. A fictional showcase. Views of the rings subject to orbital season.</div></div>
+  </footer>
+
+</div>
+</body>
+</html>
