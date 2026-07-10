@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<!--
+  Discover Saturn — Property Detail / Aurelia (Halo Estates).
+  INTENTIONALLY INACCESSIBLE fixture (see uploads/discover-saturn-spec.md).
+  Static implementation of Property Detail.dc.html. Every seeded WCAG failure is
+  tagged with data-a11y-issue="<slug>". Document-level failures (#4 no lang,
+  #6 generic title) applied statically. The gallery lightbox is a genuine keyboard
+  trap (#14, manual-only). DO NOT "fix" any of these — the failures are the point.
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- SEEDED ISSUE #6 (WCAG 2.4.2) generic-title: same generic site title on every page, not descriptive of the property. Target fix: unique, descriptive per-page <title>. -->
+<title>Halo Estates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e1526; --ink-2:#18213b; --gold:#b0823f; --gold-2:#c79a58; --amber:#e7cfa3;
+    --paper:#f7f3ec; --paper-2:#efe8db; --card:#fffdf9; --text:#1b2233; --muted:#6c7280;
+    --line:#e4ddcf; --serif:'Cormorant Garamond',Georgia,serif; --sans:'Hanken Grotesk',system-ui,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--paper); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  /* SEEDED ISSUE #12 (WCAG 2.4.7) focus-not-visible: focus outline removed site-wide on purpose. Target fix: restore a visible :focus-visible indicator. */
+  *:focus, *:focus-visible{ outline:none !important; }
+  a{ color:var(--gold); text-decoration:none; }
+  a:hover{ color:var(--text); text-decoration:underline; }
+  input, button, select, textarea{ font-family:inherit; }
+  ::selection{ background:var(--amber); color:var(--ink); }
+  @keyframes haloFade{ from{opacity:0} to{opacity:1} }
+</style>
+</head>
+<body>
+<div style="min-height:100vh; background:var(--paper);">
+
+  <!-- ============ HEADER / NAV ============ -->
+  <header style="position:sticky; top:0; z-index:40; background:rgba(14,21,38,0.96); backdrop-filter:saturate(140%) blur(6px); border-bottom:1px solid rgba(199,154,88,0.22);">
+    <div style="max-width:1240px; margin:0 auto; padding:0 32px; height:74px; display:flex; align-items:center; gap:28px;">
+      <a href="index.html" style="display:flex; align-items:center; gap:11px; color:#f7f3ec;">
+        <svg width="26" height="26" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="9" fill="#c79a58"/><ellipse cx="20" cy="20" rx="18.5" ry="6.2" stroke="#c79a58" stroke-width="1.4" transform="rotate(-24 20 20)"/></svg>
+        <span style="font-family:var(--serif); font-size:23px; font-weight:600; letter-spacing:0.04em; color:#f7f3ec;">Halo Estates</span>
+      </a>
+      <nav style="display:flex; gap:26px; margin-left:14px;">
+        <a href="#" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">The Rings</a>
+        <a href="#" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">The Moons</a>
+        <a href="index.html#neighborhoods" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">Neighborhoods</a>
+        <a href="about.html" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">About</a>
+      </nav>
+      <div style="margin-left:auto; display:flex; align-items:center; gap:14px;">
+        <!-- SEEDED ISSUE #2 (WCAG 3.3.2 / 4.1.2) label-missing: search input has placeholder only, no associated <label>. Target fix: add a programmatic label. -->
+        <div data-a11y-issue="unlabeled-search-input" style="display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.07); border:1px solid rgba(199,154,88,0.28); border-radius:999px; padding:8px 14px;">
+          <svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="#c79a58" stroke-width="1.6"/><path d="M13.5 13.5L17 17" stroke="#c79a58" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <input type="text" placeholder="Search rings, moons, listings" style="background:transparent; border:none; color:#f7f3ec; font-size:13px; width:190px;">
+        </div>
+        <a href="#" style="color:#d7d2c6; font-size:14px;">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- breadcrumb -->
+    <div style="max-width:1240px; margin:0 auto; padding:22px 32px 6px; font-size:13px; color:var(--muted);">
+      <a href="#" style="color:var(--muted);">The Rings</a>
+      <span style="margin:0 8px; color:var(--gold-2);">»</span>
+      <a href="#" style="color:var(--muted);">B Ring</a>
+      <span style="margin:0 8px; color:var(--gold-2);">»</span>
+      <span style="color:var(--text);">Aurelia</span>
+    </div>
+
+    <!-- ============ GALLERY ============ -->
+    <section style="max-width:1240px; margin:0 auto; padding:14px 32px 0;">
+      <div style="position:relative; border-radius:16px; overflow:hidden; box-shadow:0 24px 60px -30px rgba(14,21,38,0.55); background:var(--ink);">
+        <!-- SEEDED ISSUE #13 (WCAG 1.1.1) judgment-case: hero listing image with NO alt; the "right" alt is ambiguous (the property vs the ring view). Target fix: purpose-aware alt chosen for page intent. -->
+        <img id="galleryMain" data-open-lightbox data-a11y-issue="hero-image-no-alt-judgment" src="saturn/images/ringfront-flagship-estate-exterior.png" style="display:block; width:100%; height:600px; object-fit:cover; cursor:zoom-in;">
+
+        <!-- gradient for controls -->
+        <div style="position:absolute; inset:0; pointer-events:none; background:linear-gradient(to top, rgba(14,21,38,0.34), transparent 32%);"></div>
+
+        <!-- SEEDED ISSUE #5 (WCAG 4.1.2) icon-button-no-name: prev/next are icon-only with no accessible name. Target fix: aria-label or visually-hidden text. -->
+        <div data-prev data-a11y-issue="gallery-prev-no-name" role="button" style="position:absolute; top:50%; left:18px; transform:translateY(-50%); width:46px; height:46px; border-radius:999px; background:rgba(14,21,38,0.55); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; cursor:pointer; border:1px solid rgba(255,255,255,0.14);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#f7f3ec" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div data-next data-a11y-issue="gallery-next-no-name" role="button" style="position:absolute; top:50%; right:18px; transform:translateY(-50%); width:46px; height:46px; border-radius:999px; background:rgba(14,21,38,0.55); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; cursor:pointer; border:1px solid rgba(255,255,255,0.14);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="#f7f3ec" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- SEEDED ISSUE #5: favorite heart, icon-only, no accessible name. -->
+        <div data-fav data-a11y-issue="favorite-toggle-no-name" role="button" style="position:absolute; top:18px; right:18px; width:46px; height:46px; border-radius:999px; background:rgba(14,21,38,0.55); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; cursor:pointer; border:1px solid rgba(255,255,255,0.14);">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20.5l-1.4-1.28C6 15.1 3 12.4 3 9.1 3 6.5 5 4.5 7.6 4.5c1.5 0 2.9.7 3.9 1.9 1-1.2 2.4-1.9 3.9-1.9C21.9 4.5 21 6.5 21 9.1c0 3.3-3 6-7.6 10.12L12 20.5z" stroke="#f7f3ec" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div style="position:absolute; left:22px; bottom:20px; display:flex; align-items:center; gap:10px;">
+          <span style="background:rgba(14,21,38,0.6); color:var(--amber); font-size:12px; letter-spacing:0.14em; text-transform:uppercase; padding:7px 13px; border-radius:999px; border:1px solid rgba(199,154,88,0.35);">Ringfront Flagship</span>
+        </div>
+        <div data-open-lightbox data-a11y-issue="gallery-expand-no-name" role="button" style="position:absolute; right:22px; bottom:20px; display:flex; align-items:center; gap:8px; background:rgba(14,21,38,0.6); color:#f7f3ec; font-size:13px; padding:9px 15px; border-radius:999px; cursor:pointer; border:1px solid rgba(255,255,255,0.14);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9V4h5M20 15v5h-5M15 4h5v5M9 20H4v-5" stroke="#f7f3ec" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          View all photos
+        </div>
+      </div>
+
+      <!-- thumbnails -->
+      <div id="thumbs" style="display:flex; gap:12px; margin-top:12px;">
+        <!-- SEEDED ISSUE #1 (WCAG 1.1.1) img-no-alt: gallery thumbnails have no alt attribute. Target fix: purpose-aware alt (or alt="" if decorative). -->
+        <img data-thumb data-index="0" data-a11y-issue="gallery-thumb-no-alt" src="saturn/images/ringfront-flagship-estate-exterior.png" style="width:132px; height:88px; object-fit:cover; border-radius:9px; cursor:pointer; border:2px solid var(--gold-2); opacity:1;">
+        <img data-thumb data-index="1" data-a11y-issue="gallery-thumb-no-alt" src="saturn/images/luxury-interior-with-ring-view.png" style="width:132px; height:88px; object-fit:cover; border-radius:9px; cursor:pointer; border:2px solid transparent; opacity:0.6;">
+        <img data-thumb data-index="2" data-a11y-issue="gallery-thumb-no-alt" src="saturn/images/master-suite-at-ring-rise.png" style="width:132px; height:88px; object-fit:cover; border-radius:9px; cursor:pointer; border:2px solid transparent; opacity:0.6;">
+        <img data-thumb data-index="3" data-a11y-issue="gallery-thumb-no-alt" src="saturn/images/ring-particle-shoreline.png" style="width:132px; height:88px; object-fit:cover; border-radius:9px; cursor:pointer; border:2px solid transparent; opacity:0.6;">
+        <img data-thumb data-index="4" data-a11y-issue="gallery-thumb-no-alt" src="saturn/images/homepage-hero.png" style="width:132px; height:88px; object-fit:cover; border-radius:9px; cursor:pointer; border:2px solid transparent; opacity:0.6;">
+      </div>
+    </section>
+
+    <!-- ============ TITLE + KEY FACTS ============ -->
+    <section style="max-width:1240px; margin:0 auto; padding:34px 32px 0;">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+        <div>
+          <div style="font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;">B Ring · Saturn</div>
+          <!-- Property name is the page's single H1. -->
+          <h1 style="font-family:var(--serif); font-weight:500; font-size:56px; line-height:1.02; margin:0; color:var(--ink); letter-spacing:-0.01em;">Aurelia</h1>
+          <div style="font-family:var(--serif); font-style:italic; font-size:23px; color:var(--muted); margin-top:8px;">A ringfront crystal villa on Saturn's B Ring</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:4px;">Guide Price</div>
+          <div style="font-family:var(--serif); font-size:44px; font-weight:600; color:var(--ink); line-height:1;">$48,500,000</div>
+          <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:14px;">
+            <!-- SEEDED ISSUE #5: share button, icon-only, no accessible name. -->
+            <div data-a11y-issue="share-button-no-name" role="button" style="width:44px; height:44px; border-radius:999px; border:1px solid var(--line); background:var(--card); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="6" cy="12" r="2.4" stroke="#1b2233" stroke-width="1.5"/><circle cx="17" cy="6" r="2.4" stroke="#1b2233" stroke-width="1.5"/><circle cx="17" cy="18" r="2.4" stroke="#1b2233" stroke-width="1.5"/><path d="M8.2 11l6.6-3.6M8.2 13l6.6 3.6" stroke="#1b2233" stroke-width="1.5"/></svg>
+            </div>
+            <div data-open-lightbox role="button" style="background:var(--ink); color:#f7f3ec; font-size:14px; letter-spacing:0.02em; padding:0 24px; height:44px; display:flex; align-items:center; border-radius:999px; cursor:pointer;">Book a Private Tour</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEEDED ISSUE #3 (WCAG 1.4.3) contrast-minimum: pale slate text on the dark navy facts strip is below 4.5:1 (looks like a tasteful designer choice). Target fix: raise text to meet 4.5:1. -->
+      <div data-a11y-issue="low-contrast-facts-strip" style="margin-top:26px; background:var(--ink); border-radius:14px; padding:26px 30px; display:grid; grid-template-columns:repeat(6,1fr); gap:20px;">
+        <div><div style="font-size:12px; color:#586178; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px;">Bedrooms</div><div style="font-family:var(--serif); font-size:28px; color:#a9b2c6;">5</div></div>
+        <div><div style="font-size:12px; color:#586178; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px;">Bathrooms</div><div style="font-family:var(--serif); font-size:28px; color:#a9b2c6;">6</div></div>
+        <div><div style="font-size:12px; color:#586178; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px;">Interior</div><div style="font-family:var(--serif); font-size:28px; color:#a9b2c6;">8,200 ft²</div></div>
+        <div><div style="font-size:12px; color:#586178; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px;">Ring View</div><div style="font-family:var(--serif); font-size:28px; color:#a9b2c6;">Full</div></div>
+        <div><div style="font-size:12px; color:#586178; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px;">Gravity</div><div style="font-family:var(--serif); font-size:28px; color:#a9b2c6;">0.91 g</div></div>
+        <div><div style="font-size:12px; color:#586178; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px;">To Titan</div><div style="font-family:var(--serif); font-size:28px; color:#a9b2c6;">2.4 hrs</div></div>
+      </div>
+    </section>
+
+    <!-- ============ BODY: description + sidebar ============ -->
+    <section style="max-width:1240px; margin:0 auto; padding:44px 32px; display:grid; grid-template-columns:1fr 400px; gap:56px; align-items:start;">
+      <div>
+        <!-- SEEDED ISSUE #7 (WCAG 1.3.1) heading-skip: page jumps from H1 (property name) straight to H3, skipping H2. Target fix: logical, sequential heading order. -->
+        <h3 data-a11y-issue="heading-skip-h1-to-h3" style="font-family:var(--serif); font-weight:500; font-size:30px; margin:0 0 16px; color:var(--ink);">The Residence</h3>
+        <p style="font-size:16px; line-height:1.75; color:#3a4152; margin:0 0 16px; max-width:62ch;">Suspended on a stabilized ringfront platform within Saturn's B Ring, Aurelia is a study in weightless luxury. Floor-to-ceiling crystal glass wraps every principal room, framing the rings as they drift past in slow, luminous bands. The residence was conceived as a single sculptural gesture — curved cast-stone volumes, brushed-gold seams, and interiors finished in bone, alabaster, and warm oak.</p>
+        <p style="font-size:16px; line-height:1.75; color:#3a4152; margin:0 0 16px; max-width:62ch;">A private ice terrace cantilevers over open ring space, while the double-height great room opens onto a sculptural stair that seems to float against the ringlight. Every suite faces ring-rise; the master wing is oriented for the annual equinox shadow, when the rings cast a knife-thin line across the whole sky.</p>
+
+        <h3 style="font-family:var(--serif); font-weight:500; font-size:30px; margin:34px 0 18px; color:var(--ink);">Features &amp; Amenities</h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px 40px;">
+          <div style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--line); font-size:15px; color:#3a4152;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="#b0823f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Floor-to-ceiling crystal glass</div>
+          <div style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--line); font-size:15px; color:#3a4152;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="#b0823f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Cantilevered private ice terrace</div>
+          <div style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--line); font-size:15px; color:#3a4152;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="#b0823f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Double-height great room</div>
+          <div style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--line); font-size:15px; color:#3a4152;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="#b0823f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Sculptural floating stair</div>
+          <div style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--line); font-size:15px; color:#3a4152;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="#b0823f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Ring-rise master wing</div>
+          <div style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--line); font-size:15px; color:#3a4152;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="#b0823f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Stabilized 0.91 g field</div>
+          <div style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--line); font-size:15px; color:#3a4152;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="#b0823f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Heated infinity ring-pool</div>
+          <div style="display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--line); font-size:15px; color:#3a4152;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="#b0823f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Private transit berth</div>
+        </div>
+
+        <!-- gallery interior feature -->
+        <div style="margin-top:36px; border-radius:14px; overflow:hidden;">
+          <!-- SEEDED ISSUE #1: interior feature image, no alt. -->
+          <img data-a11y-issue="interior-image-no-alt" src="saturn/images/luxury-interior-with-ring-view.png" style="display:block; width:100%; height:360px; object-fit:cover;">
+        </div>
+
+        <!-- ===== AFFORDABILITY CALCULATOR ===== -->
+        <!-- SEEDED ISSUE #9 (WCAG 3.3.2 / 1.3.1) calc-unlabeled: number inputs have no <label> (placeholder only) and the result is not programmatically associated / announced. Target fix: labeled inputs + result in an associated, announced region. -->
+        <div data-a11y-issue="calculator-unlabeled-and-unassociated" style="margin-top:40px; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:30px 32px;">
+          <h3 style="font-family:var(--serif); font-weight:500; font-size:28px; margin:0 0 4px; color:var(--ink);">Affordability</h3>
+          <p style="font-size:14px; color:var(--muted); margin:0 0 22px;">Estimate a monthly figure across the Saturn Reserve lending rate.</p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px 22px;">
+            <div>
+              <div style="font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:7px;">Purchase Price</div>
+              <input id="calcPrice" type="number" placeholder="Purchase price" value="48500000" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:9px; font-size:15px; background:#fff; color:var(--ink);">
+            </div>
+            <div>
+              <div style="font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:7px;">Down Payment</div>
+              <input id="calcDown" type="number" placeholder="Down payment" value="9700000" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:9px; font-size:15px; background:#fff; color:var(--ink);">
+            </div>
+            <div>
+              <div style="font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:7px;">Interest Rate (%)</div>
+              <input id="calcRate" type="number" placeholder="Interest rate" value="4.5" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:9px; font-size:15px; background:#fff; color:var(--ink);">
+            </div>
+            <div>
+              <div style="font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:7px;">Term (years)</div>
+              <input id="calcTerm" type="number" placeholder="Term in years" value="30" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:9px; font-size:15px; background:#fff; color:var(--ink);">
+            </div>
+          </div>
+          <div style="margin-top:24px; padding-top:22px; border-top:1px solid var(--line); display:flex; align-items:baseline; justify-content:space-between;">
+            <span style="font-size:14px; color:var(--muted);">Estimated monthly</span>
+            <span id="calcMonthly" style="font-family:var(--serif); font-size:38px; font-weight:600; color:var(--gold);">$196,595</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SIDEBAR: schedule a viewing ===== -->
+      <aside style="position:sticky; top:98px;">
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:16px; padding:28px; box-shadow:0 18px 40px -28px rgba(14,21,38,0.4);">
+          <h3 style="font-family:var(--serif); font-weight:500; font-size:26px; margin:0 0 4px; color:var(--ink);">Schedule a Viewing</h3>
+          <p style="font-size:13.5px; color:var(--muted); margin:0 0 20px;">A Halo advisor will arrange transit to the B Ring.</p>
+
+          <!-- SEEDED ISSUE #11 (WCAG 1.4.1 / 3.3.1) errors-color-only: validation errors are shown by color (red border/text) only and are not programmatically associated with their fields (no aria-describedby, no id link). Target fix: error text associated via aria-describedby. -->
+          <form id="viewingForm" data-a11y-issue="form-errors-color-only-unassociated" novalidate>
+            <input id="fName" type="text" placeholder="Full name" style="width:100%; padding:12px 14px; margin-bottom:14px; border:1px solid var(--line); border-radius:9px; font-size:14.5px; color:var(--ink);">
+            <div id="errName" style="color:#c0392b; font-size:12.5px; margin:-6px 0 12px; display:none;">Required</div>
+
+            <input id="fEmail" type="email" placeholder="Email address" style="width:100%; padding:12px 14px; margin-bottom:14px; border:1px solid var(--line); border-radius:9px; font-size:14.5px; color:var(--ink);">
+            <div id="errEmail" style="color:#c0392b; font-size:12.5px; margin:-6px 0 12px; display:none;">Enter a valid email</div>
+
+            <input id="fDate" type="date" style="width:100%; padding:12px 14px; margin-bottom:14px; border:1px solid var(--line); border-radius:9px; font-size:14.5px; color:var(--ink);">
+            <div id="errDate" style="color:#c0392b; font-size:12.5px; margin:-6px 0 12px; display:none;">Choose a preferred date</div>
+
+            <textarea id="fMsg" placeholder="Anything we should know?" rows="3" style="width:100%; padding:12px 14px; margin-bottom:16px; border:1px solid var(--line); border-radius:9px; font-size:14.5px; color:var(--ink); resize:vertical;"></textarea>
+
+            <button type="submit" style="width:100%; background:var(--ink); color:#f7f3ec; border:none; font-size:15px; letter-spacing:0.02em; padding:14px; border-radius:999px; cursor:pointer;">Request Viewing</button>
+            <div id="formOk" style="margin-top:14px; text-align:center; color:#2f7d4f; font-size:13.5px; display:none;">Request received — an advisor will be in touch.</div>
+          </form>
+        </div>
+
+        <div style="margin-top:18px; display:flex; align-items:center; gap:12px; padding:16px 20px; border:1px solid var(--line); border-radius:14px; background:var(--paper-2);">
+          <div style="width:40px; height:40px; border-radius:999px; background:var(--ink); display:flex; align-items:center; justify-content:center; color:var(--amber); font-family:var(--serif); font-size:18px;">R</div>
+          <div style="font-size:13px; color:#3a4152;"><strong style="color:var(--ink);">Rhea Calloway</strong><br>Ringfront Specialist · Halo Estates</div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ============ LOCATION ============ -->
+    <section style="max-width:1240px; margin:0 auto; padding:8px 32px 44px;">
+      <h3 style="font-family:var(--serif); font-weight:500; font-size:30px; margin:0 0 18px; color:var(--ink);">Location</h3>
+      <div style="position:relative; border-radius:16px; overflow:hidden; border:1px solid var(--line); height:340px; background:radial-gradient(120% 140% at 70% 20%, #1c2647, #0e1526);">
+        <!-- SEEDED EXTRA ISSUE (WCAG 1.1.1) meaningless-alt: decorative "orbital map" image carries a meaningless filename alt instead of alt="". Target fix: alt="" for decorative, or a meaningful description if informative. -->
+        <img data-a11y-issue="map-meaningless-alt" src="saturn/images/ring-particle-shoreline.png" alt="map.png" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.42;">
+        <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(14,21,38,0.5), transparent);"></div>
+        <!-- SEEDED ISSUE #5: map pin, icon-only, no accessible name. -->
+        <div data-a11y-issue="map-pin-no-name" role="button" style="position:absolute; left:52%; top:44%; transform:translate(-50%,-100%); cursor:pointer;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z" fill="#c79a58" stroke="#0e1526" stroke-width="1"/><circle cx="12" cy="10" r="2.4" fill="#0e1526"/></svg>
+        </div>
+        <div style="position:absolute; left:24px; bottom:22px; color:#f7f3ec;">
+          <div style="font-family:var(--serif); font-size:24px;">B Ring · Sector 7</div>
+          <div style="font-size:13px; color:var(--amber);">Stabilized ringfront platform · 0.91 g</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SIMILAR LISTINGS ============ -->
+    <section style="background:var(--paper-2); border-top:1px solid var(--line);">
+      <div style="max-width:1240px; margin:0 auto; padding:48px 32px;">
+        <h3 style="font-family:var(--serif); font-weight:500; font-size:30px; margin:0 0 24px; color:var(--ink);">Similar Ringfront Listings</h3>
+        <!-- SEEDED ISSUE #8 (WCAG 2.4.4) link-purpose: every card uses an identical "View details" link with no distinguishing context. Target fix: visually-hidden property name or descriptive link text. -->
+        <div data-a11y-issue="identical-view-details-links" style="display:grid; grid-template-columns:repeat(3,1fr); gap:26px;">
+          <article style="background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden;">
+            <!-- SEEDED ISSUE #1: card image, no alt. -->
+            <img data-a11y-issue="card-image-no-alt" src="saturn/images/titan-methane-lakefront-villa.png" style="display:block; width:100%; height:210px; object-fit:cover;">
+            <div style="padding:20px 22px 24px;">
+              <div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Titan</div>
+              <h4 style="font-family:var(--serif); font-weight:500; font-size:23px; margin:0 0 6px; color:var(--ink);">Meridian House</h4>
+              <div style="font-size:14px; color:var(--muted); margin-bottom:14px;">5 bed · 6 bath · Methane-lakefront</div>
+              <div style="display:flex; align-items:center; justify-content:space-between;">
+                <span style="font-family:var(--serif); font-size:24px; font-weight:600; color:var(--ink);">$21,900,000</span>
+                <a href="property-detail.html" style="font-size:14px; color:var(--gold); border:1px solid var(--gold); padding:8px 16px; border-radius:999px;">View details</a>
+              </div>
+            </div>
+          </article>
+          <article style="background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden;">
+            <img data-a11y-issue="card-image-no-alt" src="saturn/images/enceladus-geyser-view-penthouse.png" style="display:block; width:100%; height:210px; object-fit:cover;">
+            <div style="padding:20px 22px 24px;">
+              <div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Enceladus</div>
+              <h4 style="font-family:var(--serif); font-weight:500; font-size:23px; margin:0 0 6px; color:var(--ink);">Geyser Penthouse</h4>
+              <div style="font-size:14px; color:var(--muted); margin-bottom:14px;">3 bed · 4 bath · Geyser-view</div>
+              <div style="display:flex; align-items:center; justify-content:space-between;">
+                <span style="font-family:var(--serif); font-size:24px; font-weight:600; color:var(--ink);">$14,250,000</span>
+                <a href="property-detail.html" style="font-size:14px; color:var(--gold); border:1px solid var(--gold); padding:8px 16px; border-radius:999px;">View details</a>
+              </div>
+            </div>
+          </article>
+          <article style="background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden;">
+            <img data-a11y-issue="card-image-no-alt" src="saturn/images/iapetus-two-tone-cliffs-estate.png" style="display:block; width:100%; height:210px; object-fit:cover;">
+            <div style="padding:20px 22px 24px;">
+              <div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Iapetus</div>
+              <h4 style="font-family:var(--serif); font-weight:500; font-size:23px; margin:0 0 6px; color:var(--ink);">The Two-Tone</h4>
+              <div style="font-size:14px; color:var(--muted); margin-bottom:14px;">6 bed · 7 bath · Cliffside</div>
+              <div style="display:flex; align-items:center; justify-content:space-between;">
+                <span style="font-family:var(--serif); font-size:24px; font-weight:600; color:var(--ink);">$32,600,000</span>
+                <a href="property-detail.html" style="font-size:14px; color:var(--gold); border:1px solid var(--gold); padding:8px 16px; border-radius:999px;">View details</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background:var(--ink); color:#aeb6c6;">
+    <div style="max-width:1240px; margin:0 auto; padding:52px 32px 40px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:11px; margin-bottom:14px;">
+          <svg width="24" height="24" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="9" fill="#c79a58"/><ellipse cx="20" cy="20" rx="18.5" ry="6.2" stroke="#c79a58" stroke-width="1.4" transform="rotate(-24 20 20)"/></svg>
+          <span style="font-family:var(--serif); font-size:22px; color:#f7f3ec;">Halo Estates</span>
+        </div>
+        <p style="font-size:13.5px; line-height:1.7; color:#8b93a5; max-width:34ch;">Ringfront residences and moon-side estates across the Saturn system. Membership by introduction.</p>
+      </div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Explore</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="#" style="color:#aeb6c6;">The Rings</a><a href="#" style="color:#aeb6c6;">The Moons</a><a href="index.html#neighborhoods" style="color:#aeb6c6;">Neighborhoods</a></div></div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Agency</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="about.html" style="color:#aeb6c6;">About</a><a href="#" style="color:#aeb6c6;">Advisors</a><a href="#" style="color:#aeb6c6;">Contact</a></div></div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Legal</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="#" style="color:#aeb6c6;">Terms</a><a href="#" style="color:#aeb6c6;">Privacy</a></div></div>
+    </div>
+    <div style="border-top:1px solid rgba(199,154,88,0.18);"><div style="max-width:1240px; margin:0 auto; padding:18px 32px; font-size:12.5px; color:#6c7488;">© 2276 Halo Estates. A fictional showcase. Views of the rings subject to orbital season.</div></div>
+  </footer>
+
+  <!-- ============ LIGHTBOX (SEEDED ISSUE #14) ============ -->
+  <!-- SEEDED ISSUE #14 (WCAG 2.1.1 / 2.1.2 / 2.4.3) keyboard-trap: the lightbox is a genuine keyboard trap — Tab and Escape are swallowed so focus cannot leave, Esc will not close it, and prev/next/close are mouse-only (clickable divs, not keyboard-operable). Manual-only; a scanner will not catch this. Target fix: proper focus trap WITHIN the dialog, Esc closes, focus returns to trigger, controls keyboard-operable. -->
+  <div id="lightbox" data-a11y-issue="lightbox-keyboard-trap" tabindex="0" style="position:fixed; inset:0; z-index:80; background:rgba(8,12,22,0.94); display:none; align-items:center; justify-content:center; animation:haloFade 0.2s ease;">
+    <div data-close-lightbox role="button" style="position:absolute; top:22px; right:26px; width:48px; height:48px; border-radius:999px; border:1px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#f7f3ec" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </div>
+    <div data-prev role="button" style="position:absolute; left:26px; top:50%; transform:translateY(-50%); width:52px; height:52px; border-radius:999px; border:1px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="#f7f3ec" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div data-next role="button" style="position:absolute; right:26px; top:50%; transform:translateY(-50%); width:52px; height:52px; border-radius:999px; border:1px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="#f7f3ec" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <!-- SEEDED ISSUE #1: lightbox image, no alt. -->
+    <img id="lightboxImg" data-a11y-issue="lightbox-image-no-alt" src="saturn/images/ringfront-flagship-estate-exterior.png" style="max-width:86vw; max-height:82vh; object-fit:contain; border-radius:8px; box-shadow:0 40px 90px -30px rgba(0,0,0,0.7);">
+    <div id="lbCounter" style="position:absolute; bottom:26px; left:50%; transform:translateX(-50%); color:#d7d2c6; font-size:13px; letter-spacing:0.05em;">1 / 5</div>
+  </div>
+
+</div>
+
+<script>
+  // Interactive behavior (vanilla JS reimplementation of the DCLogic component).
+  // Seeded a11y failures live in the markup above and are intentionally preserved —
+  // including the lightbox keyboard trap (#14), which is behavioral and manual-only.
+  (function(){
+    var images = [
+      'saturn/images/ringfront-flagship-estate-exterior.png',
+      'saturn/images/luxury-interior-with-ring-view.png',
+      'saturn/images/master-suite-at-ring-rise.png',
+      'saturn/images/ring-particle-shoreline.png',
+      'saturn/images/homepage-hero.png'
+    ];
+    var activeIndex = 0;
+    var main = document.getElementById('galleryMain');
+    var lbImg = document.getElementById('lightboxImg');
+    var lbCounter = document.getElementById('lbCounter');
+    var thumbs = Array.prototype.slice.call(document.querySelectorAll('[data-thumb]'));
+    var lightbox = document.getElementById('lightbox');
+
+    function update(){
+      var src = images[activeIndex];
+      main.src = src; lbImg.src = src;
+      lbCounter.textContent = (activeIndex + 1) + ' / ' + images.length;
+      thumbs.forEach(function(t, i){
+        t.style.borderColor = i === activeIndex ? 'var(--gold-2)' : 'transparent';
+        t.style.opacity = i === activeIndex ? '1' : '0.6';
+      });
+    }
+    function prev(){ activeIndex = (activeIndex - 1 + images.length) % images.length; update(); }
+    function next(){ activeIndex = (activeIndex + 1) % images.length; update(); }
+
+    document.querySelectorAll('[data-prev]').forEach(function(el){ el.addEventListener('click', prev); });
+    document.querySelectorAll('[data-next]').forEach(function(el){ el.addEventListener('click', next); });
+    thumbs.forEach(function(t){ t.addEventListener('click', function(){ activeIndex = Number(t.getAttribute('data-index')); update(); }); });
+
+    // ----- lightbox open/close (mouse-only, by design) -----
+    function openLightbox(){ lightbox.style.display = 'flex'; lightbox.focus(); }
+    function closeLightbox(){ lightbox.style.display = 'none'; }
+    document.querySelectorAll('[data-open-lightbox]').forEach(function(el){ el.addEventListener('click', openLightbox); });
+    document.querySelectorAll('[data-close-lightbox]').forEach(function(el){ el.addEventListener('click', closeLightbox); });
+
+    // SEEDED ISSUE #14: swallow Tab + Escape so keyboard focus cannot escape the lightbox
+    // and Esc cannot close it. (Mouse close still works, by design, so the fixture stays usable.)
+    lightbox.addEventListener('keydown', function(e){
+      if (e.key === 'Tab' || e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); }
+    });
+
+    // ----- favorite -----
+    document.querySelectorAll('[data-fav]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var svg = btn.querySelector('svg');
+        var on = svg.getAttribute('fill') === 'none';
+        svg.setAttribute('fill', on ? 'var(--gold-2)' : 'none');
+      });
+    });
+
+    // ----- affordability calculator -----
+    var priceIn = document.getElementById('calcPrice');
+    var downIn = document.getElementById('calcDown');
+    var rateIn = document.getElementById('calcRate');
+    var termIn = document.getElementById('calcTerm');
+    var monthlyEl = document.getElementById('calcMonthly');
+    function money(n){ return (isFinite(n) ? n : 0).toLocaleString('en-US', { style:'currency', currency:'USD', maximumFractionDigits:0 }); }
+    function calc(){
+      var P = Math.max(0, (Number(priceIn.value) || 0) - (Number(downIn.value) || 0));
+      var r = (Number(rateIn.value) || 0) / 100 / 12;
+      var n = (Number(termIn.value) || 0) * 12;
+      var m;
+      if (n <= 0) m = 0;
+      else if (r === 0) m = P / n;
+      else m = P * r / (1 - Math.pow(1 + r, -n));
+      monthlyEl.textContent = money(m);
+    }
+    [priceIn, downIn, rateIn, termIn].forEach(function(inp){ inp.addEventListener('input', calc); });
+    calc();
+
+    // ----- schedule-a-viewing form (errors by color only, intentionally unassociated) -----
+    var form = document.getElementById('viewingForm');
+    var fName = document.getElementById('fName'), fEmail = document.getElementById('fEmail'), fDate = document.getElementById('fDate');
+    var errName = document.getElementById('errName'), errEmail = document.getElementById('errEmail'), errDate = document.getElementById('errDate');
+    var formOk = document.getElementById('formOk');
+    function paintField(input, errDiv, err){
+      input.style.borderColor = err ? '#c0392b' : 'var(--line)';
+      input.style.color = err ? '#c0392b' : 'var(--ink)';
+      errDiv.style.display = err ? 'block' : 'none';
+    }
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var eName = !fName.value.trim();
+      var eEmail = !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fEmail.value);
+      var eDate = !fDate.value;
+      paintField(fName, errName, eName);
+      paintField(fEmail, errEmail, eEmail);
+      paintField(fDate, errDate, eDate);
+      formOk.style.display = (!eName && !eEmail && !eDate) ? 'block' : 'none';
+    });
+
+    update();
+  })();
+</script>
+</body>
+</html>

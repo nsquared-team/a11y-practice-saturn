@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<!--
+  Discover Saturn — Results / All Residences (Halo Estates).
+  INTENTIONALLY INACCESSIBLE fixture (see uploads/discover-saturn-spec.md).
+  Static implementation of Results.dc.html. Every seeded WCAG failure is tagged
+  with data-a11y-issue="<slug>". Document-level failures (#4 no lang, #6 generic
+  title) applied statically. DO NOT "fix" these — the failures are the point.
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- SEEDED ISSUE #6 (WCAG 2.4.2) generic-title: same generic site title on every page. Target fix: unique, descriptive <title>. -->
+<title>Halo Estates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e1526; --ink-2:#18213b; --gold:#b0823f; --gold-2:#c79a58; --amber:#e7cfa3;
+    --paper:#f7f3ec; --paper-2:#efe8db; --card:#fffdf9; --text:#1b2233; --muted:#6c7280;
+    --line:#e4ddcf; --serif:'Cormorant Garamond',Georgia,serif; --sans:'Hanken Grotesk',system-ui,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--paper); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  /* SEEDED ISSUE #12 (WCAG 2.4.7) focus-not-visible: focus outline removed site-wide on purpose. Target fix: restore a visible :focus-visible indicator. */
+  *:focus, *:focus-visible{ outline:none !important; }
+  a{ color:var(--gold); text-decoration:none; }
+  a:hover{ color:var(--text); text-decoration:underline; }
+  input, button, select, textarea{ font-family:inherit; }
+  ::selection{ background:var(--amber); color:var(--ink); }
+</style>
+</head>
+<body>
+<div style="min-height:100vh; background:var(--paper);">
+
+  <!-- ============ HEADER / NAV (shared) ============ -->
+  <header style="position:sticky; top:0; z-index:40; background:rgba(14,21,38,0.96); backdrop-filter:saturate(140%) blur(6px); border-bottom:1px solid rgba(199,154,88,0.22);">
+    <div style="max-width:1240px; margin:0 auto; padding:0 32px; height:74px; display:flex; align-items:center; gap:28px;">
+      <a href="index.html" style="display:flex; align-items:center; gap:11px; color:#f7f3ec;">
+        <svg width="26" height="26" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="9" fill="#c79a58"/><ellipse cx="20" cy="20" rx="18.5" ry="6.2" stroke="#c79a58" stroke-width="1.4" transform="rotate(-24 20 20)"/></svg>
+        <span style="font-family:var(--serif); font-size:23px; font-weight:600; letter-spacing:0.04em; color:#f7f3ec;">Halo Estates</span>
+      </a>
+      <nav style="display:flex; gap:26px; margin-left:14px;">
+        <a href="#" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">The Rings</a>
+        <a href="#" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">The Moons</a>
+        <a href="index.html#neighborhoods" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">Neighborhoods</a>
+        <a href="about.html" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">About</a>
+      </nav>
+      <div style="margin-left:auto; display:flex; align-items:center; gap:14px;">
+        <!-- SEEDED ISSUE #2 (WCAG 3.3.2 / 4.1.2) label-missing: search input has placeholder only, no associated <label>. -->
+        <div data-a11y-issue="unlabeled-search-input" style="display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.07); border:1px solid rgba(199,154,88,0.28); border-radius:999px; padding:8px 14px;">
+          <svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="#c79a58" stroke-width="1.6"/><path d="M13.5 13.5L17 17" stroke="#c79a58" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <input type="text" placeholder="Search rings, moons, listings" style="background:transparent; border:none; color:#f7f3ec; font-size:13px; width:190px;">
+        </div>
+        <a href="#" style="color:#d7d2c6; font-size:14px;">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- breadcrumb -->
+    <div style="max-width:1320px; margin:0 auto; padding:22px 32px 6px; font-size:13px; color:var(--muted);">
+      <a href="index.html" style="color:var(--muted);">Home</a>
+      <span style="margin:0 8px; color:var(--gold-2);">»</span>
+      <span style="color:var(--text);">All Residences</span>
+    </div>
+
+    <section style="max-width:1320px; margin:0 auto; padding:10px 32px 0;">
+      <div style="font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;">Browse the System</div>
+      <h1 style="font-family:var(--serif); font-weight:500; font-size:52px; line-height:1.0; margin:0; color:var(--ink); letter-spacing:-0.01em;">All residences</h1>
+    </section>
+
+    <!-- ============ BODY: filters + grid ============ -->
+    <section style="max-width:1320px; margin:0 auto; padding:28px 32px 70px; display:grid; grid-template-columns:270px 1fr; gap:38px; align-items:start;">
+
+      <!-- ===== FILTER SIDEBAR ===== -->
+      <aside style="position:sticky; top:98px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:26px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:22px;">
+          <!-- SEEDED ISSUE #7 (WCAG 1.3.1) heading-skip: jumps from H1 to H3, skipping H2. Target fix: sequential heading order. -->
+          <h3 data-a11y-issue="heading-skip-h1-to-h3" style="font-family:var(--serif); font-weight:500; font-size:24px; margin:0; color:var(--ink);">Refine</h3>
+          <div id="resetBtn" role="button" style="font-size:12.5px; color:var(--gold); cursor:pointer;">Reset</div>
+        </div>
+
+        <!-- category -->
+        <div style="margin-bottom:24px;">
+          <div style="font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px;">Neighborhood</div>
+          <div style="display:flex; flex-direction:column; gap:2px;">
+            <div class="cat-row" role="button" data-cat-filter="rings" style="display:flex; align-items:center; gap:11px; padding:8px 6px; border-radius:8px; cursor:pointer; background:transparent;">
+              <div class="cbox" style="width:18px; height:18px; border-radius:5px; border:1.5px solid var(--muted); background:transparent; display:flex; align-items:center; justify-content:center;">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" style="opacity:0"><path d="M5 12.5l4.5 4.5L19 7" stroke="#fffdf9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span style="font-size:14px; color:var(--text);">The Rings</span>
+            </div>
+            <div class="cat-row" role="button" data-cat-filter="moons" style="display:flex; align-items:center; gap:11px; padding:8px 6px; border-radius:8px; cursor:pointer; background:transparent;">
+              <div class="cbox" style="width:18px; height:18px; border-radius:5px; border:1.5px solid var(--muted); background:transparent; display:flex; align-items:center; justify-content:center;">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" style="opacity:0"><path d="M5 12.5l4.5 4.5L19 7" stroke="#fffdf9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span style="font-size:14px; color:var(--text);">The Moons</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- price range -->
+        <!-- SEEDED ISSUE #9 (WCAG 3.3.2 / 4.1.2) label-missing: the min/max price inputs carry placeholders only, with no associated <label>. Target fix: programmatic labels. -->
+        <div data-a11y-issue="unlabeled-price-inputs" style="margin-bottom:24px;">
+          <div style="font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px;">Guide Price ($M)</div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <input id="minP" type="number" placeholder="Min" style="width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px; font-size:14px; background:#fff; color:var(--ink);">
+            <span style="color:var(--muted);">–</span>
+            <input id="maxP" type="number" placeholder="Max" style="width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px; font-size:14px; background:#fff; color:var(--ink);">
+          </div>
+        </div>
+
+        <!-- bedrooms -->
+        <!-- SEEDED ISSUE #15 (WCAG 3.3.2 / 4.1.2) label-missing: bedrooms <select> has no associated <label> / accessible name. Target fix: a programmatic label. -->
+        <div data-a11y-issue="unlabeled-bedrooms-select" style="margin-bottom:24px;">
+          <div style="font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px;">Bedrooms</div>
+          <select id="bedsSel" style="width:100%; padding:11px 12px; border:1px solid var(--line); border-radius:8px; font-size:14px; background:var(--card); color:var(--ink); cursor:pointer;">
+            <option value="0">Any</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+            <option value="5">5+</option>
+            <option value="6">6+</option>
+          </select>
+        </div>
+
+        <!-- ring view -->
+        <div>
+          <div style="font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px;">Ring View</div>
+          <div id="fullViewChk" role="button" style="display:flex; align-items:center; gap:11px; padding:8px 6px; border-radius:8px; cursor:pointer;">
+            <div class="cbox" style="width:18px; height:18px; border-radius:5px; border:1.5px solid var(--muted); background:transparent; display:flex; align-items:center; justify-content:center;">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" style="opacity:0"><path d="M5 12.5l4.5 4.5L19 7" stroke="#fffdf9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span style="font-size:14px; color:var(--text);">Full ring view only</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ===== RESULTS ===== -->
+      <div>
+        <!-- toolbar -->
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; flex-wrap:wrap; gap:14px;">
+          <!-- SEEDED ISSUE #3 (WCAG 1.4.3) contrast-minimum: the result-count line is pale gold-grey on paper, below 4.5:1. Looks like a light caption treatment. Target fix: raise to 4.5:1. -->
+          <div id="countLabel" data-a11y-issue="low-contrast-result-count" style="font-size:14px; color:#c3b89f;">8 residences across the Saturn system</div>
+          <div style="display:flex; align-items:center; gap:14px;">
+            <!-- SEEDED ISSUE #15: sort select, no associated label / accessible name. -->
+            <div data-a11y-issue="unlabeled-sort-select" style="display:flex; align-items:center; gap:10px;">
+              <span style="font-size:13px; color:var(--muted);">Sort</span>
+              <select id="sortSel" style="border:1px solid var(--line); background:var(--card); color:var(--ink); font-size:14px; padding:10px 14px; border-radius:8px; cursor:pointer;">
+                <option value="featured">Featured</option>
+                <option value="price-asc">Price · low to high</option>
+                <option value="price-desc">Price · high to low</option>
+                <option value="beds-desc">Bedrooms · most first</option>
+              </select>
+            </div>
+            <!-- SEEDED ISSUE #5 (WCAG 4.1.2) icon-button-no-name: grid/list view toggles are icon-only, no accessible name. -->
+            <div style="display:flex; gap:4px; background:var(--paper-2); border:1px solid var(--line); border-radius:8px; padding:4px;">
+              <div id="gridBtn" data-a11y-issue="view-grid-no-name" role="button" style="width:34px; height:34px; border-radius:6px; display:flex; align-items:center; justify-content:center; cursor:pointer; background:var(--card);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1" stroke="#0e1526" stroke-width="1.7"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="#0e1526" stroke-width="1.7"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="#0e1526" stroke-width="1.7"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="#0e1526" stroke-width="1.7"/></svg>
+              </div>
+              <div id="listBtn" data-a11y-issue="view-list-no-name" role="button" style="width:34px; height:34px; border-radius:6px; display:flex; align-items:center; justify-content:center; cursor:pointer; background:transparent;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="#9aa0ac" stroke-width="1.7" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- grid -->
+        <!-- SEEDED ISSUE #8 (WCAG 2.4.4) link-purpose: every card uses an identical "View details" link with no distinguishing context. Target fix: visually-hidden property name. -->
+        <div id="resultGrid" data-a11y-issue="identical-view-details-links" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:26px;">
+
+          <article data-card data-id="aurelia" data-cat="rings" data-price="48.5" data-beds="5" data-view="Full" data-index="0" style="background:var(--card); border:1px solid var(--line); border-radius:15px; overflow:hidden; display:flex; flex-direction:column;">
+            <div data-media style="position:relative;">
+              <!-- SEEDED ISSUE #1 (WCAG 1.1.1) img-no-alt: result card image has no alt. -->
+              <img data-a11y-issue="result-card-image-no-alt" src="saturn/images/ringfront-flagship-estate-exterior.png" style="display:block; width:100%; height:100%; min-height:210px; object-fit:cover;">
+              <div data-a11y-issue="favorite-toggle-no-name" role="button" data-fav style="position:absolute; top:14px; right:14px; width:42px; height:42px; border-radius:999px; background:rgba(14,21,38,0.5); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; cursor:pointer; border:1px solid rgba(255,255,255,0.16);">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20.5l-1.4-1.28C6 15.1 3 12.4 3 9.1 3 6.5 5 4.5 7.6 4.5c1.5 0 2.9.7 3.9 1.9 1-1.2 2.4-1.9 3.9-1.9C21.9 4.5 21 6.5 21 9.1c0 3.3-3 6-7.6 10.12L12 20.5z" stroke="#f7f3ec" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </div>
+              <span style="position:absolute; left:14px; bottom:14px; background:rgba(14,21,38,0.6); color:var(--amber); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; padding:6px 12px; border-radius:999px; border:1px solid rgba(199,154,88,0.35);">Ringfront Flagship</span>
+            </div>
+            <div style="padding:22px 24px 24px; display:flex; flex-direction:column; flex:1;">
+              <div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">B Ring</div>
+              <h4 style="font-family:var(--serif); font-weight:500; font-size:26px; margin:0 0 6px; color:var(--ink);">Aurelia</h4>
+              <div style="font-size:14px; color:var(--muted); margin-bottom:18px;">5 bed · 6 bath · Full ring view</div>
+              <div style="margin-top:auto; display:flex; flex-direction:column; align-items:stretch; gap:14px;">
+                <span style="font-family:var(--serif); font-size:26px; font-weight:600; color:var(--ink);">$48.5M</span>
+                <a href="property-detail.html" style="font-size:14px; color:var(--gold); border:1px solid var(--gold); padding:11px 18px; border-radius:999px; white-space:nowrap; text-align:center;">View details</a>
+              </div>
+            </div>
+          </article>
+
+          <article data-card data-id="ringrise" data-cat="rings" data-price="29.4" data-beds="4" data-view="Full" data-index="1" style="background:var(--card); border:1px solid var(--line); border-radius:15px; overflow:hidden; display:flex; flex-direction:column;">
+            <div data-media style="position:relative;">
+              <img data-a11y-issue="result-card-image-no-alt" src="saturn/images/master-suite-at-ring-rise.png" style="display:block; width:100%; height:100%; min-height:210px; object-fit:cover;">
+              <div data-a11y-issue="favorite-toggle-no-name" role="button" data-fav style="position:absolute; top:14px; right:14px; width:42px; height:42px; border-radius:999px; background:rgba(14,21,38,0.5); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; cursor:pointer; border:1px solid rgba(255,255,255,0.16);">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20.5l-1.4-1.28C6 15.1 3 12.4 3 9.1 3 6.5 5 4.5 7.6 4.5c1.5 0 2.9.7 3.9 1.9 1-1.2 2.4-1.9 3.9-1.9C21.9 4.5 21 6.5 21 9.1c0 3.3-3 6-7.6 10.12L12 20.5z" stroke="#f7f3ec" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </div>
+              <span style="position:absolute; left:14px; bottom:14px; background:rgba(14,21,38,0.6); color:var(--amber); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; padding:6px 12px; border-radius:999px; border:1px solid rgba(199,154,88,0.35);">Ringfront</span>
+            </div>
+            <div style="padding:22px 24px 24px; display:flex; flex-direction:column; flex:1;">
+              <div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">B Ring</div>
+              <h4 style="font-family:var(--serif); font-weight:500; font-size:26px; margin:0 0 6px; color:var(--ink);">Ring-Rise House</h4>
+              <div style="font-size:14px; color:var(--muted); margin-bottom:18px;">4 bed · 5 bath · Full ring view</div>
+              <div style="margin-top:auto; display:flex; flex-direction:column; align-items:stretch; gap:14px;">
+                <span style="font-family:var(--serif); font-size:26px; font-weight:600; color:var(--ink);">$29.4M</span>
+                <a href="property-detail.html" style="font-size:14px; color:var(--gold); border:1px solid var(--gold); padding:11px 18px; border-radius:999px; white-space:nowrap; text-align:center;">View details</a>
+              </div>
+            </div>
+          </article>
+
+          <article data-card data-id="obsdeck" data-cat="rings" data-price="36.9" data-beds="3" data-view="Full" data-index="2" style="background:var(--card); border:1px solid var(--line); border-radius:15px; overflow:hidden; display:flex; flex-direction:column;">
+            <div data-media style="position:relative;">
+              <img data-a11y-issue="result-card-image-no-alt" src="saturn/images/zero-gravity-infinity-pool-observation-deck.png" style="display:block; width:100%; height:100%; min-height:210px; object-fit:cover;">
+              <div data-a11y-issue="favorite-toggle-no-name" role="button" data-fav style="position:absolute; top:14px; right:14px; width:42px; height:42px; border-radius:999px; background:rgba(14,21,38,0.5); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; cursor:pointer; border:1px solid rgba(255,255,255,0.16);">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20.5l-1.4-1.28C6 15.1 3 12.4 3 9.1 3 6.5 5 4.5 7.6 4.5c1.5 0 2.9.7 3.9 1.9 1-1.2 2.4-1.9 3.9-1.9C21.9 4.5 21 6.5 21 9.1c0 3.3-3 6-7.6 10.12L12 20.5z" stroke="#f7f3ec" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </div>
+              <span style="position:absolute; left:14px; bottom:14px; background:rgba(14,21,38,0.6); color:var(--amber); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; padding:6px 12px; border-radius:999px; border:1px solid rgba(199,154,88,0.35);">Penthouse</span>
+            </div>
+            <div style="padding:22px 24px 24px; display:flex; flex-direction:column; flex:1;">
+              <div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">A Ring</div>
+              <h4 style="font-family:var(--serif); font-weight:500; font-size:26px; margin:0 0 6px; color:var(--ink);">The Observation Deck</h4>
+              <div style="font-size:14px; color:var(--muted); margin-bottom:18px;">3 bed · 4 bath · Full ring view</div>
+              <div style="margin-top:auto; display:flex; flex-direction:column; align-items:stretch; gap:14px;">
+                <span style="font-family:var(--serif); font-size:26px; font-weight:600; color:var(--ink);">$36.9M</span>
+                <a href="property-detail.html" style="font-size:14px; color:var(--gold); border:1px solid var(--gold); padding:11px 18px; border-radius:999px; white-space:nowrap; text-align:center;">View details</a>
+              </div>
+            </div>
+          </article>
+
+          <article data-card data-id="shoreline" data-cat="rings" data-price="18.2" data-beds="3" data-view="Partial" data-index="3" style="background:var(--card); border:1px solid var(--line); border-radius:15px; overflow:hidden; display:flex; flex-direction:column;">
+            <div data-media style="position:relative;">
+              <img data-a11y-issue="result-card-image-no-alt" src="saturn/images/ring-particle-shoreline.png" style="display:block; width:100%; height:100%; min-height:210px; object-fit:cover;">
+              <div data-a11y-issue="favorite-toggle-no-name" role="button" data-fav style="position:absolute; top:14px; right:14px; width:42px; height:42px; border-radius:999px; background:rgba(14,21,38,0.5); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; cursor:pointer; border:1px solid rgba(255,255,255,0.16);">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20.5l-1.4-1.28C6 15.1 3 12.4 3 9.1 3 6.5 5 4.5 7.6 4.5c1.5 0 2.9.7 3.9 1.9 1-1.2 2.4-1.9 3.9-1.9C21.9 4.5 21 6.5 21 9.1c0 3.3-3 6-7.6 10.12L12 20.5z" stroke="#f7f3ec" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </div>
+              <span style="position:absolute; left:14px; bottom:14px; background:rgba(14,21,38,0.6); color:var(--amber); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; padding:6px 12px; border-radius:999px; border:1px solid rgba(199,154,88,0.35);">Ringfront</span>
+            </div>
+            <div style="padding:22px 24px 24px; display:flex; flex-direction:column; flex:1;">
+              <div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">C Ring</div>
+              <h4 style="font-family:var(--serif); font-weight:500; font-size:26px; margin:0 0 6px; color:var(--ink);">Shoreline Pavilion</h4>
+              <div style="font-size:14px; color:var(--muted); margin-bottom:18px;">3 bed · 3 bath · Partial ring view</div>
+              <div style="margin-top:auto; display:flex; flex-direction:column; align-items:stretch; gap:14px;">
+                <span style="font-family:var(--serif); font-size:26px; font-weight:600; color:var(--ink);">$18.2M</span>
+                <a href="property-detail.html" style="font-size:14px; color:var(--gold); border:1px solid var(--gold); padding:11px 18px; border-radius:999px; white-space:nowrap; text-align:center;">View details</a>
+              </div>
+            </div>
+          </article>
+
+          <article data-card data-id="meridian" data-cat="moons" data-price="21.9" data-beds="5" data-view="None" data-index="4" style="background:var(--card); border:1px solid var(--line); border-radius:15px; overflow:hidden; display:flex; flex-direction:column;">
+            <div data-media style="position:relative;">
+              <img data-a11y-issue="result-card-image-no-alt" src="saturn/images/titan-methane-lakefront-villa.png" style="display:block; width:100%; height:100%; min-height:210px; object-fit:cover;">
+              <div data-a11y-issue="favorite-toggle-no-name" role="button" data-fav style="position:absolute; top:14px; right:14px; width:42px; height:42px; border-radius:999px; background:rgba(14,21,38,0.5); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; cursor:pointer; border:1px solid rgba(255,255,255,0.16);">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20.5l-1.4-1.28C6 15.1 3 12.4 3 9.1 3 6.5 5 4.5 7.6 4.5c1.5 0 2.9.7 3.9 1.9 1-1.2 2.4-1.9 3.9-1.9C21.9 4.5 21 6.5 21 9.1c0 3.3-3 6-7.6 10.12L12 20.5z" stroke="#f7f3ec" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </div>
+              <span style="position:absolute; left:14px; bottom:14px; background:rgba(14,21,38,0.6); color:var(--amber); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; padding:6px 12px; border-radius:999px; border:1px solid rgba(199,154,88,0.35);">Lakefront</span>
+            </div>
+            <div style="padding:22px 24px 24px; display:flex; flex-direction:column; flex:1;">
+              <div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Titan</div>
+              <h4 style="font-family:var(--serif); font-weight:500; font-size:26px; margin:0 0 6px; color:var(--ink);">Meridian House</h4>
+              <div style="font-size:14px; color:var(--muted); margin-bottom:18px;">5 bed · 6 bath · None ring view</div>
+              <div style="margin-top:auto; display:flex; flex-direction:column; align-items:stretch; gap:14px;">
+                <span style="font-family:var(--serif); font-size:26px; font-weight:600; color:var(--ink);">$21.9M</span>
+                <a href="property-detail.html" style="font-size:14px; color:var(--gold); border:1px solid var(--gold); padding:11px 18px; border-radius:999px; white-space:nowrap; text-align:center;">View details</a>
+              </div>
+            </div>
+          </article>
+
+          <article data-card data-id="geyser" data-cat="moons" data-price="14.25" data-beds="3" data-view="None" data-index="5" style="background:var(--card); border:1px solid var(--line); border-radius:15px; overflow:hidden; display:flex; flex-direction:column;">
+            <div data-media style="position:relative;">
+              <img data-a11y-issue="result-card-image-no-alt" src="saturn/images/enceladus-geyser-view-penthouse.png" style="display:block; width:100%; height:100%; min-height:210px; object-fit:cover;">
+              <div data-a11y-issue="favorite-toggle-no-name" role="button" data-fav style="position:absolute; top:14px; right:14px; width:42px; height:42px; border-radius:999px; background:rgba(14,21,38,0.5); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; cursor:pointer; border:1px solid rgba(255,255,255,0.16);">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20.5l-1.4-1.28C6 15.1 3 12.4 3 9.1 3 6.5 5 4.5 7.6 4.5c1.5 0 2.9.7 3.9 1.9 1-1.2 2.4-1.9 3.9-1.9C21.9 4.5 21 6.5 21 9.1c0 3.3-3 6-7.6 10.12L12 20.5z" stroke="#f7f3ec" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </div>
+              <span style="position:absolute; left:14px; bottom:14px; background:rgba(14,21,38,0.6); color:var(--amber); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; padding:6px 12px; border-radius:999px; border:1px solid rgba(199,154,88,0.35);">Moon-side</span>
+            </div>
+            <div style="padding:22px 24px 24px; display:flex; flex-direction:column; flex:1;">
+              <div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Enceladus</div>
+              <h4 style="font-family:var(--serif); font-weight:500; font-size:26px; margin:0 0 6px; color:var(--ink);">Geyser Penthouse</h4>
+              <div style="font-size:14px; color:var(--muted); margin-bottom:18px;">3 bed · 4 bath · None ring view</div>
+              <div style="margin-top:auto; display:flex; flex-direction:column; align-items:stretch; gap:14px;">
+                <span style="font-family:var(--serif); font-size:26px; font-weight:600; color:var(--ink);">$14.25M</span>
+                <a href="property-detail.html" style="font-size:14px; color:var(--gold); border:1px solid var(--gold); padding:11px 18px; border-radius:999px; white-space:nowrap; text-align:center;">View details</a>
+              </div>
+            </div>
+          </article>
+
+          <article data-card data-id="twotone" data-cat="moons" data-price="32.6" data-beds="6" data-view="Partial" data-index="6" style="background:var(--card); border:1px solid var(--line); border-radius:15px; overflow:hidden; display:flex; flex-direction:column;">
+            <div data-media style="position:relative;">
+              <img data-a11y-issue="result-card-image-no-alt" src="saturn/images/iapetus-two-tone-cliffs-estate.png" style="display:block; width:100%; height:100%; min-height:210px; object-fit:cover;">
+              <div data-a11y-issue="favorite-toggle-no-name" role="button" data-fav style="position:absolute; top:14px; right:14px; width:42px; height:42px; border-radius:999px; background:rgba(14,21,38,0.5); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; cursor:pointer; border:1px solid rgba(255,255,255,0.16);">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20.5l-1.4-1.28C6 15.1 3 12.4 3 9.1 3 6.5 5 4.5 7.6 4.5c1.5 0 2.9.7 3.9 1.9 1-1.2 2.4-1.9 3.9-1.9C21.9 4.5 21 6.5 21 9.1c0 3.3-3 6-7.6 10.12L12 20.5z" stroke="#f7f3ec" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </div>
+              <span style="position:absolute; left:14px; bottom:14px; background:rgba(14,21,38,0.6); color:var(--amber); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; padding:6px 12px; border-radius:999px; border:1px solid rgba(199,154,88,0.35);">Cliffside</span>
+            </div>
+            <div style="padding:22px 24px 24px; display:flex; flex-direction:column; flex:1;">
+              <div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Iapetus</div>
+              <h4 style="font-family:var(--serif); font-weight:500; font-size:26px; margin:0 0 6px; color:var(--ink);">The Two-Tone</h4>
+              <div style="font-size:14px; color:var(--muted); margin-bottom:18px;">6 bed · 7 bath · Partial ring view</div>
+              <div style="margin-top:auto; display:flex; flex-direction:column; align-items:stretch; gap:14px;">
+                <span style="font-family:var(--serif); font-size:26px; font-weight:600; color:var(--ink);">$32.6M</span>
+                <a href="property-detail.html" style="font-size:14px; color:var(--gold); border:1px solid var(--gold); padding:11px 18px; border-radius:999px; white-space:nowrap; text-align:center;">View details</a>
+              </div>
+            </div>
+          </article>
+
+          <article data-card data-id="interior" data-cat="rings" data-price="42" data-beds="5" data-view="Full" data-index="7" style="background:var(--card); border:1px solid var(--line); border-radius:15px; overflow:hidden; display:flex; flex-direction:column;">
+            <div data-media style="position:relative;">
+              <img data-a11y-issue="result-card-image-no-alt" src="saturn/images/luxury-interior-with-ring-view.png" style="display:block; width:100%; height:100%; min-height:210px; object-fit:cover;">
+              <div data-a11y-issue="favorite-toggle-no-name" role="button" data-fav style="position:absolute; top:14px; right:14px; width:42px; height:42px; border-radius:999px; background:rgba(14,21,38,0.5); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; cursor:pointer; border:1px solid rgba(255,255,255,0.16);">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20.5l-1.4-1.28C6 15.1 3 12.4 3 9.1 3 6.5 5 4.5 7.6 4.5c1.5 0 2.9.7 3.9 1.9 1-1.2 2.4-1.9 3.9-1.9C21.9 4.5 21 6.5 21 9.1c0 3.3-3 6-7.6 10.12L12 20.5z" stroke="#f7f3ec" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              </div>
+              <span style="position:absolute; left:14px; bottom:14px; background:rgba(14,21,38,0.6); color:var(--amber); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; padding:6px 12px; border-radius:999px; border:1px solid rgba(199,154,88,0.35);">Ringfront</span>
+            </div>
+            <div style="padding:22px 24px 24px; display:flex; flex-direction:column; flex:1;">
+              <div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">B Ring</div>
+              <h4 style="font-family:var(--serif); font-weight:500; font-size:26px; margin:0 0 6px; color:var(--ink);">The Glass Wing</h4>
+              <div style="font-size:14px; color:var(--muted); margin-bottom:18px;">5 bed · 6 bath · Full ring view</div>
+              <div style="margin-top:auto; display:flex; flex-direction:column; align-items:stretch; gap:14px;">
+                <span style="font-family:var(--serif); font-size:26px; font-weight:600; color:var(--ink);">$42M</span>
+                <a href="property-detail.html" style="font-size:14px; color:var(--gold); border:1px solid var(--gold); padding:11px 18px; border-radius:999px; white-space:nowrap; text-align:center;">View details</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- empty state -->
+        <div id="emptyState" style="display:none; border:1px solid var(--line); border-radius:15px; background:var(--card); padding:70px 32px; text-align:center;">
+          <div style="width:60px; height:60px; border-radius:999px; background:var(--paper-2); display:flex; align-items:center; justify-content:center; margin:0 auto 20px;">
+            <svg width="26" height="26" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="#b0823f" stroke-width="1.6"/><path d="M13.5 13.5L17 17" stroke="#b0823f" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <div style="font-family:var(--serif); font-size:28px; color:var(--ink); margin-bottom:8px;">No residences match</div>
+          <p style="font-size:14.5px; color:var(--muted); margin:0 0 22px;">No listings meet your current filters. Try widening the price range or neighborhood.</p>
+          <div id="emptyReset" role="button" style="display:inline-block; background:var(--ink); color:#f7f3ec; font-size:14px; padding:12px 26px; border-radius:999px; cursor:pointer;">Reset filters</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER (shared) ============ -->
+  <footer style="background:var(--ink); color:#aeb6c6;">
+    <div style="max-width:1320px; margin:0 auto; padding:52px 32px 40px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:11px; margin-bottom:14px;">
+          <svg width="24" height="24" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="9" fill="#c79a58"/><ellipse cx="20" cy="20" rx="18.5" ry="6.2" stroke="#c79a58" stroke-width="1.4" transform="rotate(-24 20 20)"/></svg>
+          <span style="font-family:var(--serif); font-size:22px; color:#f7f3ec;">Halo Estates</span>
+        </div>
+        <p style="font-size:13.5px; line-height:1.7; color:#8b93a5; max-width:34ch;">Ringfront residences and moon-side estates across the Saturn system. Membership by introduction.</p>
+      </div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Explore</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="#" style="color:#aeb6c6;">The Rings</a><a href="#" style="color:#aeb6c6;">The Moons</a><a href="index.html#neighborhoods" style="color:#aeb6c6;">Neighborhoods</a></div></div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Agency</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="about.html" style="color:#aeb6c6;">About</a><a href="#" style="color:#aeb6c6;">Advisors</a><a href="#" style="color:#aeb6c6;">Contact</a></div></div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Legal</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="#" style="color:#aeb6c6;">Terms</a><a href="#" style="color:#aeb6c6;">Privacy</a></div></div>
+    </div>
+    <div style="border-top:1px solid rgba(199,154,88,0.18);"><div style="max-width:1320px; margin:0 auto; padding:18px 32px; font-size:12.5px; color:#6c7488;">© 2276 Halo Estates. A fictional showcase. Views of the rings subject to orbital season.</div></div>
+  </footer>
+
+</div>
+
+<script>
+  // Interactive behavior (vanilla JS reimplementation of the DCLogic component).
+  // Seeded a11y failures live in the markup above and are intentionally preserved.
+  (function(){
+    var state = { cats:{}, minP:'', maxP:'', beds:0, fullView:false, sort:'featured', view:'grid' };
+    var grid = document.getElementById('resultGrid');
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('[data-card]'));
+    var countLabel = document.getElementById('countLabel');
+    var empty = document.getElementById('emptyState');
+
+    function matches(c){
+      var anyCat = state.cats.rings || state.cats.moons;
+      if (anyCat && !state.cats[c.getAttribute('data-cat')]) return false;
+      var price = Number(c.getAttribute('data-price'));
+      if (state.minP !== '' && price < Number(state.minP)) return false;
+      if (state.maxP !== '' && price > Number(state.maxP)) return false;
+      if (Number(state.beds) > 0 && Number(c.getAttribute('data-beds')) < Number(state.beds)) return false;
+      if (state.fullView && c.getAttribute('data-view') !== 'Full') return false;
+      return true;
+    }
+
+    function apply(){
+      var isList = state.view === 'list';
+      // layout
+      grid.style.gridTemplateColumns = isList ? '1fr' : 'repeat(3, 1fr)';
+      // sort (reorder nodes)
+      var ordered = cards.slice();
+      if (state.sort === 'price-asc')  ordered.sort(function(a,b){ return Number(a.dataset.price) - Number(b.dataset.price); });
+      else if (state.sort === 'price-desc') ordered.sort(function(a,b){ return Number(b.dataset.price) - Number(a.dataset.price); });
+      else if (state.sort === 'beds-desc')  ordered.sort(function(a,b){ return Number(b.dataset.beds) - Number(a.dataset.beds); });
+      else ordered.sort(function(a,b){ return Number(a.dataset.index) - Number(b.dataset.index); });
+      ordered.forEach(function(c){ grid.appendChild(c); });
+      // filter + per-card list styling
+      var shown = 0;
+      ordered.forEach(function(c){
+        var ok = matches(c);
+        var media = c.querySelector('[data-media]');
+        if (ok){
+          shown++;
+          c.style.display = 'flex';
+          c.style.flexDirection = isList ? 'row' : 'column';
+          c.style.alignItems = isList ? 'stretch' : '';
+          if (media){ media.style.width = isList ? '320px' : ''; media.style.flexShrink = isList ? '0' : ''; }
+        } else {
+          c.style.display = 'none';
+        }
+      });
+      // count + empty state
+      countLabel.textContent = shown + (shown === 1 ? ' residence' : ' residences') + ' across the Saturn system';
+      empty.style.display = shown === 0 ? 'block' : 'none';
+      grid.style.display = shown === 0 ? 'none' : 'grid';
+    }
+
+    // ----- checkbox visuals -----
+    function paintCheckbox(rowEl, checked, isCat){
+      var box = rowEl.querySelector('.cbox');
+      var svg = rowEl.querySelector('.cbox svg');
+      box.style.borderColor = checked ? 'var(--ink)' : 'var(--muted)';
+      box.style.background = checked ? 'var(--ink)' : 'transparent';
+      svg.style.opacity = checked ? '1' : '0';
+      if (isCat) rowEl.style.background = checked ? 'var(--paper-2)' : 'transparent';
+    }
+
+    // ----- category checkboxes -----
+    var catRows = Array.prototype.slice.call(document.querySelectorAll('.cat-row'));
+    catRows.forEach(function(row){
+      row.addEventListener('click', function(){
+        var key = row.getAttribute('data-cat-filter');
+        state.cats[key] = !state.cats[key];
+        paintCheckbox(row, !!state.cats[key], true);
+        apply();
+      });
+    });
+
+    // ----- ring view -----
+    var fvRow = document.getElementById('fullViewChk');
+    fvRow.addEventListener('click', function(){
+      state.fullView = !state.fullView;
+      paintCheckbox(fvRow, state.fullView, false);
+      apply();
+    });
+
+    // ----- price / beds / sort -----
+    var minP = document.getElementById('minP'), maxP = document.getElementById('maxP');
+    minP.addEventListener('input', function(){ state.minP = minP.value; apply(); });
+    maxP.addEventListener('input', function(){ state.maxP = maxP.value; apply(); });
+    var bedsSel = document.getElementById('bedsSel');
+    bedsSel.addEventListener('change', function(){ state.beds = Number(bedsSel.value); apply(); });
+    var sortSel = document.getElementById('sortSel');
+    sortSel.addEventListener('change', function(){ state.sort = sortSel.value; apply(); });
+
+    // ----- grid / list toggle -----
+    var gridBtn = document.getElementById('gridBtn'), listBtn = document.getElementById('listBtn');
+    function paintView(){
+      var isList = state.view === 'list';
+      gridBtn.style.background = !isList ? 'var(--card)' : 'transparent';
+      listBtn.style.background = isList ? 'var(--card)' : 'transparent';
+      gridBtn.querySelectorAll('rect').forEach(function(r){ r.setAttribute('stroke', !isList ? '#0e1526' : '#9aa0ac'); });
+      listBtn.querySelectorAll('path').forEach(function(p){ p.setAttribute('stroke', isList ? '#0e1526' : '#9aa0ac'); });
+    }
+    gridBtn.addEventListener('click', function(){ state.view = 'grid'; paintView(); apply(); });
+    listBtn.addEventListener('click', function(){ state.view = 'list'; paintView(); apply(); });
+
+    // ----- favorites -----
+    document.querySelectorAll('[data-fav]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var svg = btn.querySelector('svg');
+        var on = svg.getAttribute('fill') === 'none';
+        svg.setAttribute('fill', on ? 'var(--gold-2)' : 'none');
+      });
+    });
+
+    // ----- reset -----
+    function reset(){
+      state.cats = {}; state.minP = ''; state.maxP = ''; state.beds = 0; state.fullView = false; state.sort = 'featured';
+      minP.value = ''; maxP.value = ''; bedsSel.value = '0'; sortSel.value = 'featured';
+      catRows.forEach(function(r){ paintCheckbox(r, false, true); });
+      paintCheckbox(fvRow, false, false);
+      apply();
+    }
+    document.getElementById('resetBtn').addEventListener('click', reset);
+    document.getElementById('emptyReset').addEventListener('click', reset);
+
+    apply();
+  })();
+</script>
+</body>
+</html>

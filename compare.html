@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<!--
+  Discover Saturn — Compare Residences (Halo Estates).
+  INTENTIONALLY INACCESSIBLE fixture (see uploads/discover-saturn-spec.md).
+  Static implementation of Compare.dc.html. Every seeded WCAG failure is tagged
+  with data-a11y-issue="<slug>". Document-level failures (#4 no lang, #6 generic
+  title) applied statically. The comparison table is built from a <table> that
+  uses only <td> (no <th>, no scope, no <caption>) — issue #10. DO NOT "fix" any
+  of these — the failures are the point.
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- SEEDED ISSUE #6 (WCAG 2.4.2) generic-title: same generic site title on every page. Target fix: unique, descriptive <title>. -->
+<title>Halo Estates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e1526; --ink-2:#18213b; --gold:#b0823f; --gold-2:#c79a58; --amber:#e7cfa3;
+    --paper:#f7f3ec; --paper-2:#efe8db; --card:#fffdf9; --text:#1b2233; --muted:#6c7280;
+    --line:#e4ddcf; --serif:'Cormorant Garamond',Georgia,serif; --sans:'Hanken Grotesk',system-ui,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--paper); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  /* SEEDED ISSUE #12 (WCAG 2.4.7) focus-not-visible: focus outline removed site-wide on purpose. Target fix: restore a visible :focus-visible indicator. */
+  *:focus, *:focus-visible{ outline:none !important; }
+  a{ color:var(--gold); text-decoration:none; }
+  a:hover{ color:var(--text); text-decoration:underline; }
+  input, button, select, textarea{ font-family:inherit; }
+  ::selection{ background:var(--amber); color:var(--ink); }
+</style>
+</head>
+<body>
+<div style="min-height:100vh; background:var(--paper);">
+
+  <!-- ============ HEADER / NAV (shared) ============ -->
+  <header style="position:sticky; top:0; z-index:40; background:rgba(14,21,38,0.96); backdrop-filter:saturate(140%) blur(6px); border-bottom:1px solid rgba(199,154,88,0.22);">
+    <div style="max-width:1240px; margin:0 auto; padding:0 32px; height:74px; display:flex; align-items:center; gap:28px;">
+      <a href="index.html" style="display:flex; align-items:center; gap:11px; color:#f7f3ec;">
+        <svg width="26" height="26" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="9" fill="#c79a58"/><ellipse cx="20" cy="20" rx="18.5" ry="6.2" stroke="#c79a58" stroke-width="1.4" transform="rotate(-24 20 20)"/></svg>
+        <span style="font-family:var(--serif); font-size:23px; font-weight:600; letter-spacing:0.04em; color:#f7f3ec;">Halo Estates</span>
+      </a>
+      <nav style="display:flex; gap:26px; margin-left:14px;">
+        <a href="#" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">The Rings</a>
+        <a href="#" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">The Moons</a>
+        <a href="index.html#neighborhoods" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">Neighborhoods</a>
+        <a href="about.html" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">About</a>
+      </nav>
+      <div style="margin-left:auto; display:flex; align-items:center; gap:14px;">
+        <!-- SEEDED ISSUE #2 (WCAG 3.3.2 / 4.1.2) label-missing: search input has placeholder only, no associated <label>. -->
+        <div data-a11y-issue="unlabeled-search-input" style="display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.07); border:1px solid rgba(199,154,88,0.28); border-radius:999px; padding:8px 14px;">
+          <svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="#c79a58" stroke-width="1.6"/><path d="M13.5 13.5L17 17" stroke="#c79a58" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <input type="text" placeholder="Search rings, moons, listings" style="background:transparent; border:none; color:#f7f3ec; font-size:13px; width:190px;">
+        </div>
+        <a href="#" style="color:#d7d2c6; font-size:14px;">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- breadcrumb -->
+    <div style="max-width:1240px; margin:0 auto; padding:22px 32px 6px; font-size:13px; color:var(--muted);">
+      <a href="index.html" style="color:var(--muted);">Home</a>
+      <span style="margin:0 8px; color:var(--gold-2);">»</span>
+      <span style="color:var(--text);">Compare Residences</span>
+    </div>
+
+    <!-- ============ HEADING + SORT ============ -->
+    <section style="max-width:1240px; margin:0 auto; padding:14px 32px 0;">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+        <div>
+          <div style="font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;">Side by Side</div>
+          <h1 style="font-family:var(--serif); font-weight:500; font-size:52px; line-height:1.0; margin:0; color:var(--ink); letter-spacing:-0.01em;">Compare residences</h1>
+          <div id="countLabel" style="font-family:var(--serif); font-style:italic; font-size:21px; color:var(--muted); margin-top:8px;">3 residences, side by side</div>
+        </div>
+        <!-- SEEDED ISSUE #15 (WCAG 3.3.2 / 4.1.2) label-missing: the sort <select> has placeholder-style text but no associated <label> or accessible name. Target fix: a programmatic label. -->
+        <div data-a11y-issue="unlabeled-sort-select" style="display:flex; align-items:center; gap:12px;">
+          <span style="font-size:13px; color:var(--muted); letter-spacing:0.04em;">Ordered by</span>
+          <select id="cmpSort" style="border:1px solid var(--line); background:var(--card); color:var(--ink); font-size:14px; padding:11px 16px; border-radius:9px; cursor:pointer; min-width:200px;">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price · low to high</option>
+            <option value="price-desc">Price · high to low</option>
+            <option value="beds-desc">Bedrooms · most first</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COMPARISON TABLE ============ -->
+    <section style="max-width:1240px; margin:0 auto; padding:30px 32px 70px;">
+      <div style="overflow-x:auto; border:1px solid var(--line); border-radius:16px; background:var(--card);">
+        <!-- SEEDED ISSUE #10 (WCAG 1.3.1) table-headers-missing: the comparison table conveys structure visually only. The property header cells and the attribute-label cells are plain <td> (no <th>, no scope), so no row/column header relationships are programmatically exposed and there is no <caption>. Target fix: <caption>, <th scope="col"> for each property, <th scope="row"> for each attribute. -->
+        <table data-a11y-issue="comparison-table-no-header-semantics" style="width:100%; border-collapse:collapse; min-width:760px;">
+          <tbody id="cmpBody">
+            <!-- header row: property cards (seeded as <td>, should be <th scope=col>) -->
+            <tr>
+              <td style="width:200px; padding:24px; border-bottom:1px solid var(--line); vertical-align:bottom;">
+                <div style="font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);">Residence</div>
+              </td>
+              <td style="padding:20px 22px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); vertical-align:top; min-width:220px;">
+                <div style="position:relative; border-radius:11px; overflow:hidden; margin-bottom:14px;">
+                  <img data-a11y-issue="compare-image-no-alt" src="saturn/images/ringfront-flagship-estate-exterior.png" style="display:block; width:100%; height:130px; object-fit:cover;">
+                  <div data-remove="aurelia" data-a11y-issue="remove-column-no-name" role="button" style="position:absolute; top:9px; right:9px; width:32px; height:32px; border-radius:999px; background:rgba(14,21,38,0.6); backdrop-filter:blur(3px); display:flex; align-items:center; justify-content:center; cursor:pointer; border:1px solid rgba(255,255,255,0.16);">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#f7f3ec" stroke-width="1.8" stroke-linecap="round"/></svg>
+                  </div>
+                </div>
+                <div style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:5px;">B Ring</div>
+                <div style="font-family:var(--serif); font-size:22px; color:var(--ink); line-height:1.1;">Aurelia</div>
+              </td>
+              <td style="padding:20px 22px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); vertical-align:top; min-width:220px;">
+                <div style="position:relative; border-radius:11px; overflow:hidden; margin-bottom:14px;">
+                  <img data-a11y-issue="compare-image-no-alt" src="saturn/images/iapetus-two-tone-cliffs-estate.png" style="display:block; width:100%; height:130px; object-fit:cover;">
+                  <div data-remove="twotone" data-a11y-issue="remove-column-no-name" role="button" style="position:absolute; top:9px; right:9px; width:32px; height:32px; border-radius:999px; background:rgba(14,21,38,0.6); backdrop-filter:blur(3px); display:flex; align-items:center; justify-content:center; cursor:pointer; border:1px solid rgba(255,255,255,0.16);">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#f7f3ec" stroke-width="1.8" stroke-linecap="round"/></svg>
+                  </div>
+                </div>
+                <div style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:5px;">Iapetus</div>
+                <div style="font-family:var(--serif); font-size:22px; color:var(--ink); line-height:1.1;">The Two-Tone</div>
+              </td>
+              <td style="padding:20px 22px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); vertical-align:top; min-width:220px;">
+                <div style="position:relative; border-radius:11px; overflow:hidden; margin-bottom:14px;">
+                  <img data-a11y-issue="compare-image-no-alt" src="saturn/images/titan-methane-lakefront-villa.png" style="display:block; width:100%; height:130px; object-fit:cover;">
+                  <div data-remove="meridian" data-a11y-issue="remove-column-no-name" role="button" style="position:absolute; top:9px; right:9px; width:32px; height:32px; border-radius:999px; background:rgba(14,21,38,0.6); backdrop-filter:blur(3px); display:flex; align-items:center; justify-content:center; cursor:pointer; border:1px solid rgba(255,255,255,0.16);">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#f7f3ec" stroke-width="1.8" stroke-linecap="round"/></svg>
+                  </div>
+                </div>
+                <div style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:5px;">Titan</div>
+                <div style="font-family:var(--serif); font-size:22px; color:var(--ink); line-height:1.1;">Meridian House</div>
+              </td>
+            </tr>
+            <!-- attribute rows (label cells seeded as <td>, should be <th scope=row>) -->
+            <tr style="background:transparent;">
+              <td style="padding:16px 24px; border-bottom:1px solid var(--line); font-size:12px; letter-spacing:0.09em; text-transform:uppercase; color:var(--muted); vertical-align:middle;">Guide Price</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">$48,500,000</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">$32,600,000</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">$21,900,000</td>
+            </tr>
+            <tr style="background:var(--paper-2);">
+              <td style="padding:16px 24px; border-bottom:1px solid var(--line); font-size:12px; letter-spacing:0.09em; text-transform:uppercase; color:var(--muted); vertical-align:middle;">Bedrooms</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">5</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">6</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">5</td>
+            </tr>
+            <tr style="background:transparent;">
+              <td style="padding:16px 24px; border-bottom:1px solid var(--line); font-size:12px; letter-spacing:0.09em; text-transform:uppercase; color:var(--muted); vertical-align:middle;">Bathrooms</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">6</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">7</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">6</td>
+            </tr>
+            <tr style="background:var(--paper-2);">
+              <td style="padding:16px 24px; border-bottom:1px solid var(--line); font-size:12px; letter-spacing:0.09em; text-transform:uppercase; color:var(--muted); vertical-align:middle;">Interior</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">8,200 ft²</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">9,400 ft²</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">7,100 ft²</td>
+            </tr>
+            <tr style="background:transparent;">
+              <td style="padding:16px 24px; border-bottom:1px solid var(--line); font-size:12px; letter-spacing:0.09em; text-transform:uppercase; color:var(--muted); vertical-align:middle;">Ring View</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">Full</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">Partial</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">None</td>
+            </tr>
+            <tr style="background:var(--paper-2);">
+              <td style="padding:16px 24px; border-bottom:1px solid var(--line); font-size:12px; letter-spacing:0.09em; text-transform:uppercase; color:var(--muted); vertical-align:middle;">Gravity</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">0.91 g</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">0.22 g</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">0.14 g</td>
+            </tr>
+            <tr style="background:transparent;">
+              <td style="padding:16px 24px; border-bottom:1px solid var(--line); font-size:12px; letter-spacing:0.09em; text-transform:uppercase; color:var(--muted); vertical-align:middle;">To Titan</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">2.4 hrs</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">6.1 hrs</td>
+              <td style="padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;">—</td>
+            </tr>
+            <!-- action row -->
+            <tr>
+              <td style="padding:22px 24px;"></td>
+              <td style="padding:20px 22px; border-left:1px solid var(--line);"><a data-a11y-issue="identical-view-links" href="property-detail.html" style="display:block; text-align:center; font-size:14px; color:#f7f3ec; background:var(--ink); padding:11px; border-radius:999px;">View</a></td>
+              <td style="padding:20px 22px; border-left:1px solid var(--line);"><a data-a11y-issue="identical-view-links" href="property-detail.html" style="display:block; text-align:center; font-size:14px; color:#f7f3ec; background:var(--ink); padding:11px; border-radius:999px;">View</a></td>
+              <td style="padding:20px 22px; border-left:1px solid var(--line);"><a data-a11y-issue="identical-view-links" href="property-detail.html" style="display:block; text-align:center; font-size:14px; color:#f7f3ec; background:var(--ink); padding:11px; border-radius:999px;">View</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="addSection" style="margin-top:22px; display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+        <span style="font-size:13px; color:var(--muted);">Add another residence:</span>
+        <div id="addChips" style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+          <div data-add="geyser" role="button" style="display:inline-flex; align-items:center; gap:8px; font-size:13.5px; color:var(--ink); border:1px solid var(--line); background:var(--card); padding:9px 16px; border-radius:999px; cursor:pointer;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="#b0823f" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Geyser Penthouse
+          </div>
+          <div data-add="ringrise" role="button" style="display:inline-flex; align-items:center; gap:8px; font-size:13.5px; color:var(--ink); border:1px solid var(--line); background:var(--card); padding:9px 16px; border-radius:999px; cursor:pointer;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="#b0823f" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Ring-Rise House
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER (shared) ============ -->
+  <footer style="background:var(--ink); color:#aeb6c6;">
+    <div style="max-width:1240px; margin:0 auto; padding:52px 32px 40px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:11px; margin-bottom:14px;">
+          <svg width="24" height="24" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="9" fill="#c79a58"/><ellipse cx="20" cy="20" rx="18.5" ry="6.2" stroke="#c79a58" stroke-width="1.4" transform="rotate(-24 20 20)"/></svg>
+          <span style="font-family:var(--serif); font-size:22px; color:#f7f3ec;">Halo Estates</span>
+        </div>
+        <p style="font-size:13.5px; line-height:1.7; color:#8b93a5; max-width:34ch;">Ringfront residences and moon-side estates across the Saturn system. Membership by introduction.</p>
+      </div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Explore</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="#" style="color:#aeb6c6;">The Rings</a><a href="#" style="color:#aeb6c6;">The Moons</a><a href="index.html#neighborhoods" style="color:#aeb6c6;">Neighborhoods</a></div></div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Agency</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="about.html" style="color:#aeb6c6;">About</a><a href="#" style="color:#aeb6c6;">Advisors</a><a href="#" style="color:#aeb6c6;">Contact</a></div></div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Legal</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="#" style="color:#aeb6c6;">Terms</a><a href="#" style="color:#aeb6c6;">Privacy</a></div></div>
+    </div>
+    <div style="border-top:1px solid rgba(199,154,88,0.18);"><div style="max-width:1240px; margin:0 auto; padding:18px 32px; font-size:12.5px; color:#6c7488;">© 2276 Halo Estates. A fictional showcase. Views of the rings subject to orbital season.</div></div>
+  </footer>
+
+</div>
+
+<script>
+  // Interactive behavior (vanilla JS reimplementation of the DCLogic component).
+  // The comparison table is rebuilt from a <td>-only <table> (no <th>/scope/caption) —
+  // seeded issue #10 is preserved identically in every rendered state.
+  (function(){
+    var catalog = [
+      { id:'aurelia', src:'saturn/images/ringfront-flagship-estate-exterior.png', location:'B Ring',    name:'Aurelia',         price:48500000, beds:5, baths:6, interior:8200, view:'Full',    gravity:'0.91 g', titan:'2.4 hrs' },
+      { id:'twotone', src:'saturn/images/iapetus-two-tone-cliffs-estate.png',      location:'Iapetus',   name:'The Two-Tone',    price:32600000, beds:6, baths:7, interior:9400, view:'Partial', gravity:'0.22 g', titan:'6.1 hrs' },
+      { id:'meridian',src:'saturn/images/titan-methane-lakefront-villa.png',       location:'Titan',     name:'Meridian House',  price:21900000, beds:5, baths:6, interior:7100, view:'None',    gravity:'0.14 g', titan:'—' },
+      { id:'geyser',  src:'saturn/images/enceladus-geyser-view-penthouse.png',     location:'Enceladus', name:'Geyser Penthouse',price:14250000, beds:3, baths:4, interior:4200, view:'None',    gravity:'0.01 g', titan:'3.7 hrs' },
+      { id:'ringrise',src:'saturn/images/master-suite-at-ring-rise.png',           location:'B Ring',    name:'Ring-Rise House', price:29400000, beds:4, baths:5, interior:6600, view:'Full',    gravity:'0.91 g', titan:'2.4 hrs' }
+    ];
+    var selected = ['aurelia', 'twotone', 'meridian'];
+    var sort = 'featured';
+    var MAX = 4;
+
+    var body = document.getElementById('cmpBody');
+    var countLabel = document.getElementById('countLabel');
+    var addSection = document.getElementById('addSection');
+    var addChips = document.getElementById('addChips');
+
+    function byId(id){ return catalog.filter(function(c){ return c.id === id; })[0]; }
+    function money(n){ return n.toLocaleString('en-US', { style:'currency', currency:'USD', maximumFractionDigits:0 }); }
+
+    var attrs = [
+      { label:'Guide Price', get:function(c){ return money(c.price); } },
+      { label:'Bedrooms',    get:function(c){ return String(c.beds); } },
+      { label:'Bathrooms',   get:function(c){ return String(c.baths); } },
+      { label:'Interior',    get:function(c){ return c.interior.toLocaleString('en-US') + ' ft²'; } },
+      { label:'Ring View',   get:function(c){ return c.view; } },
+      { label:'Gravity',     get:function(c){ return c.gravity; } },
+      { label:'To Titan',    get:function(c){ return c.titan; } }
+    ];
+
+    // shared cell styles (kept identical to the seeded static markup above)
+    var S = {
+      hLabel: 'width:200px; padding:24px; border-bottom:1px solid var(--line); vertical-align:bottom;',
+      hCol:   'padding:20px 22px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); vertical-align:top; min-width:220px;',
+      aLabel: 'padding:16px 24px; border-bottom:1px solid var(--line); font-size:12px; letter-spacing:0.09em; text-transform:uppercase; color:var(--muted); vertical-align:middle;',
+      aVal:   'padding:16px 22px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); font-family:var(--serif); font-size:21px; color:var(--ink); vertical-align:middle;',
+      actLabel:'padding:22px 24px;',
+      actCol: 'padding:20px 22px; border-left:1px solid var(--line);'
+    };
+
+    function colsNow(){
+      var cols = selected.map(byId).filter(Boolean);
+      if (sort === 'price-asc')  cols = cols.slice().sort(function(a,b){ return a.price - b.price; });
+      else if (sort === 'price-desc') cols = cols.slice().sort(function(a,b){ return b.price - a.price; });
+      else if (sort === 'beds-desc')  cols = cols.slice().sort(function(a,b){ return b.beds - a.beds; });
+      return cols;
+    }
+
+    function headerCell(c){
+      return '<td style="' + S.hCol + '">' +
+        '<div style="position:relative; border-radius:11px; overflow:hidden; margin-bottom:14px;">' +
+          '<img data-a11y-issue="compare-image-no-alt" src="' + c.src + '" style="display:block; width:100%; height:130px; object-fit:cover;">' +
+          '<div data-remove="' + c.id + '" data-a11y-issue="remove-column-no-name" role="button" style="position:absolute; top:9px; right:9px; width:32px; height:32px; border-radius:999px; background:rgba(14,21,38,0.6); backdrop-filter:blur(3px); display:flex; align-items:center; justify-content:center; cursor:pointer; border:1px solid rgba(255,255,255,0.16);">' +
+            '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#f7f3ec" stroke-width="1.8" stroke-linecap="round"/></svg>' +
+          '</div>' +
+        '</div>' +
+        '<div style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:5px;">' + c.location + '</div>' +
+        '<div style="font-family:var(--serif); font-size:22px; color:var(--ink); line-height:1.1;">' + c.name + '</div>' +
+      '</td>';
+    }
+
+    function render(){
+      var cols = colsNow();
+      var html = '';
+      // header row
+      html += '<tr><td style="' + S.hLabel + '"><div style="font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);">Residence</div></td>';
+      cols.forEach(function(c){ html += headerCell(c); });
+      html += '</tr>';
+      // attribute rows
+      attrs.forEach(function(a, i){
+        var rowBg = (i % 2 === 1) ? 'var(--paper-2)' : 'transparent';
+        html += '<tr style="background:' + rowBg + ';"><td style="' + S.aLabel + '">' + a.label + '</td>';
+        cols.forEach(function(c){ html += '<td style="' + S.aVal + '">' + a.get(c) + '</td>'; });
+        html += '</tr>';
+      });
+      // action row
+      html += '<tr><td style="' + S.actLabel + '"></td>';
+      cols.forEach(function(){ html += '<td style="' + S.actCol + '"><a data-a11y-issue="identical-view-links" href="property-detail.html" style="display:block; text-align:center; font-size:14px; color:#f7f3ec; background:var(--ink); padding:11px; border-radius:999px;">View</a></td>'; });
+      html += '</tr>';
+
+      body.innerHTML = html;
+      body.querySelectorAll('[data-remove]').forEach(function(btn){
+        btn.addEventListener('click', function(){ remove(btn.getAttribute('data-remove')); });
+      });
+
+      countLabel.textContent = cols.length + ' residences, side by side';
+      renderAddable();
+    }
+
+    function renderAddable(){
+      var addable = catalog.filter(function(c){ return selected.indexOf(c.id) === -1; });
+      var hasRoom = selected.length < MAX && addable.length > 0;
+      addSection.style.display = hasRoom ? 'flex' : 'none';
+      addChips.innerHTML = addable.map(function(c){
+        return '<div data-add="' + c.id + '" role="button" style="display:inline-flex; align-items:center; gap:8px; font-size:13.5px; color:var(--ink); border:1px solid var(--line); background:var(--card); padding:9px 16px; border-radius:999px; cursor:pointer;">' +
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="#b0823f" stroke-width="1.8" stroke-linecap="round"/></svg>' +
+          c.name + '</div>';
+      }).join('');
+      addChips.querySelectorAll('[data-add]').forEach(function(chip){
+        chip.addEventListener('click', function(){ add(chip.getAttribute('data-add')); });
+      });
+    }
+
+    function remove(id){ selected = selected.filter(function(x){ return x !== id; }); render(); }
+    function add(id){ if (selected.length >= MAX) return; selected.push(id); render(); }
+
+    document.getElementById('cmpSort').addEventListener('change', function(e){ sort = e.target.value; render(); });
+
+    render();
+  })();
+</script>
+</body>
+</html>
