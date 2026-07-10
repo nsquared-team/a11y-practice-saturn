@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--
+  Discover Saturn — Contact (Halo Estates).
+  A placeholder footer page for the fictional showcase — no real contact details
+  and (deliberately) no working form. Reuses the site's shared (intentionally-
+  inaccessible) chrome, so it carries the same document-level failures as every
+  other page: #4 no lang on <html>, #6 generic <title>, #12 focus removed,
+  #2 unlabeled header search. No new catalogued issues are seeded in the body.
+  DO NOT "fix" the shared chrome — it is intentionally consistent with the rest
+  of the fixture.
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- SEEDED ISSUE #6 (WCAG 2.4.2) generic-title: same generic site title on every page. Target fix: unique, descriptive <title>. -->
+<title>Halo Estates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e1526; --ink-2:#18213b; --gold:#b0823f; --gold-2:#c79a58; --amber:#e7cfa3;
+    --paper:#f7f3ec; --paper-2:#efe8db; --card:#fffdf9; --text:#1b2233; --muted:#6c7280;
+    --line:#e4ddcf; --serif:'Cormorant Garamond',Georgia,serif; --sans:'Hanken Grotesk',system-ui,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--paper); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  /* SEEDED ISSUE #12 (WCAG 2.4.7) focus-not-visible: focus outline removed site-wide on purpose. Target fix: restore a visible :focus-visible indicator. */
+  *:focus, *:focus-visible{ outline:none !important; }
+  a{ color:var(--gold); text-decoration:none; }
+  a:hover{ color:var(--text); text-decoration:underline; }
+  input, button, select, textarea{ font-family:inherit; }
+  ::selection{ background:var(--amber); color:var(--ink); }
+</style>
+</head>
+<body>
+<div style="min-height:100vh; background:var(--paper); display:flex; flex-direction:column;">
+
+  <!-- ============ HEADER / NAV (shared) ============ -->
+  <header style="position:sticky; top:0; z-index:40; background:rgba(14,21,38,0.96); backdrop-filter:saturate(140%) blur(6px); border-bottom:1px solid rgba(199,154,88,0.22);">
+    <div style="max-width:1240px; margin:0 auto; padding:0 32px; height:74px; display:flex; align-items:center; gap:28px;">
+      <a href="index.html" style="display:flex; align-items:center; gap:11px; color:#f7f3ec;">
+        <svg width="26" height="26" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="9" fill="#c79a58"/><ellipse cx="20" cy="20" rx="18.5" ry="6.2" stroke="#c79a58" stroke-width="1.4" transform="rotate(-24 20 20)"/></svg>
+        <span style="font-family:var(--serif); font-size:23px; font-weight:600; letter-spacing:0.04em; color:#f7f3ec;">Halo Estates</span>
+      </a>
+      <nav style="display:flex; gap:26px; margin-left:14px;">
+        <a href="results.html?category=rings" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">The Rings</a>
+        <a href="results.html?category=moons" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">The Moons</a>
+        <a href="index.html#neighborhoods" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">Neighborhoods</a>
+        <a href="compare.html" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">Compare</a>
+        <a href="about.html" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">About</a>
+      </nav>
+      <div style="margin-left:auto; display:flex; align-items:center; gap:14px;">
+        <!-- SEEDED ISSUE #2 (WCAG 3.3.2 / 4.1.2) label-missing: search input has placeholder only, no associated <label>. -->
+        <div data-a11y-issue="unlabeled-search-input" style="display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.07); border:1px solid rgba(199,154,88,0.28); border-radius:999px; padding:8px 14px;">
+          <svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="#c79a58" stroke-width="1.6"/><path d="M13.5 13.5L17 17" stroke="#c79a58" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <input type="text" placeholder="Search rings, moons, listings" style="background:transparent; border:none; color:#f7f3ec; font-size:13px; width:190px;">
+        </div>
+        <a href="#" style="color:#d7d2c6; font-size:14px;">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="flex:1;">
+    <!-- breadcrumb -->
+    <div style="max-width:820px; margin:0 auto; padding:26px 32px 6px; font-size:13px; color:var(--muted);">
+      <a href="index.html" style="color:var(--muted);">Home</a>
+      <span style="margin:0 8px; color:var(--gold-2);">»</span>
+      <span style="color:var(--text);">Contact</span>
+    </div>
+
+    <!-- ============ TITLE ============ -->
+    <section style="max-width:820px; margin:0 auto; padding:14px 32px 0;">
+      <div style="font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">The Agency</div>
+      <h1 style="font-family:var(--serif); font-weight:500; font-size:56px; line-height:1.02; margin:0; color:var(--ink); letter-spacing:-0.01em;">Arrange an introduction</h1>
+      <div style="font-family:var(--serif); font-style:italic; font-size:23px; color:var(--muted); margin-top:10px; max-width:40ch;">Tell us the orbit you have in mind. A Halo advisor will answer at ring-rise.</div>
+    </section>
+
+    <!-- ============ BODY ============ -->
+    <section style="max-width:820px; margin:0 auto; padding:34px 32px 20px;">
+
+      <!-- fictional-showcase note -->
+      <div style="background:var(--card); border:1px solid var(--line); border-left:3px solid var(--gold); border-radius:12px; padding:22px 26px; margin-bottom:38px;">
+        <p style="font-size:15.5px; line-height:1.75; color:#3a4152; margin:0;">Halo Estates is a <strong style="color:var(--ink);">fictional showcase</strong>. Every address, line, and channel below is invented for the world of the site — nothing sends, nothing rings, and nothing is collected. It is placeholder text standing in for a real contact page.</p>
+      </div>
+
+      <h2 style="font-family:var(--serif); font-weight:500; font-size:30px; margin:0 0 12px; color:var(--ink);">Reaching the agency</h2>
+      <p style="font-size:16px; line-height:1.8; color:#3a4152; margin:0 0 30px; max-width:64ch;">Halo works by introduction rather than by form. Were any of this real, you would not fill in a field and wait — you would leave word through one of the channels below, and an advisor for your orbit would return the call. For now, admire them as set dressing.</p>
+    </section>
+
+    <!-- ============ CHANNELS ============ -->
+    <section style="max-width:820px; margin:0 auto; padding:0 32px 20px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px;">
+
+        <!-- channel: private line -->
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:15px; padding:28px;">
+          <div style="width:46px; height:46px; border-radius:999px; background:var(--paper-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h3l1.5 5-2 1.5a11 11 0 005 5l1.5-2 5 1.5v3a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="#b0823f" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 style="font-family:var(--serif); font-weight:500; font-size:22px; margin:0 0 6px; color:var(--ink);">The private line</h3>
+          <p style="font-size:14.5px; line-height:1.65; color:#3a4152; margin:0 0 10px;">Answered at ring-rise, held in confidence, and — this being a showcase — never actually connected.</p>
+          <div style="font-size:14px; color:var(--muted); font-family:var(--serif); font-style:italic;">+66 (Saturn) 0224 · by appointment</div>
+        </div>
+
+        <!-- channel: correspondence -->
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:15px; padding:28px;">
+          <div style="width:46px; height:46px; border-radius:999px; background:var(--paper-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#b0823f" stroke-width="1.5"/><path d="M4 7l8 6 8-6" stroke="#b0823f" stroke-width="1.5"/></svg>
+          </div>
+          <h3 style="font-family:var(--serif); font-weight:500; font-size:22px; margin:0 0 6px; color:var(--ink);">Correspondence</h3>
+          <p style="font-size:14.5px; line-height:1.65; color:#3a4152; margin:0 0 10px;">A note describing the orbit you favour reaches the desk, and the right advisor answers. No inbox is truly watching, mind.</p>
+          <div style="font-size:14px; color:var(--muted); font-family:var(--serif); font-style:italic;">introductions@halo.example</div>
+        </div>
+
+        <!-- channel: ring-side office -->
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:15px; padding:28px;">
+          <div style="width:46px; height:46px; border-radius:999px; background:var(--paper-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z" stroke="#b0823f" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.5" stroke="#b0823f" stroke-width="1.5"/></svg>
+          </div>
+          <h3 style="font-family:var(--serif); font-weight:500; font-size:22px; margin:0 0 6px; color:var(--ink);">The ring-side office</h3>
+          <p style="font-size:14.5px; line-height:1.65; color:#3a4152; margin:0 0 10px;">Our salon on the B Ring promenade, glass to the shoreline. Visits by introduction — and, in this world, by imagination.</p>
+          <div style="font-size:14px; color:var(--muted); font-family:var(--serif); font-style:italic;">Promenade Deck 7 · B Ring · Saturn</div>
+        </div>
+
+        <!-- channel: hours -->
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:15px; padding:28px;">
+          <div style="width:46px; height:46px; border-radius:999px; background:var(--paper-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="#b0823f" stroke-width="1.5"/><path d="M12 7.5V12l3 2" stroke="#b0823f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 style="font-family:var(--serif); font-weight:500; font-size:22px; margin:0 0 6px; color:var(--ink);">Hours</h3>
+          <p style="font-size:14.5px; line-height:1.65; color:#3a4152; margin:0 0 10px;">Kept to Saturn's long day, so a single "afternoon" runs a comfortable few Earth weeks. We answer at ring-rise, whenever that happens to fall.</p>
+          <div style="font-size:14px; color:var(--muted); font-family:var(--serif); font-style:italic;">Ring-rise to ring-set · every orbit</div>
+        </div>
+
+      </div>
+
+      <div style="margin-top:38px;">
+        <p style="font-size:16px; line-height:1.8; color:#3a4152; margin:0 0 20px; max-width:64ch;">Prefer a name to a channel? Meet the people who would answer on our <a href="advisors.html" style="color:var(--gold);">Advisors</a> page, or read how the agency came to be on <a href="about.html" style="color:var(--gold);">About</a>.</p>
+        <a href="about.html" style="display:inline-flex; align-items:center; gap:9px; background:var(--amber); color:var(--ink); font-size:14px; letter-spacing:0.02em; padding:14px 26px; border-radius:999px;">Meet the agency
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="#0e1526" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+      <div style="margin-top:44px; padding-top:22px; border-top:1px solid var(--line); font-size:13.5px; color:var(--muted); font-style:italic; font-family:var(--serif);">No message here is sent, and no line here is answered — this is a demonstration. Please, enjoy the view of the rings.</div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER (shared) ============ -->
+  <footer style="background:var(--ink); color:#aeb6c6;">
+    <div style="max-width:1240px; margin:0 auto; padding:52px 32px 40px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:11px; margin-bottom:14px;">
+          <svg width="24" height="24" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="9" fill="#c79a58"/><ellipse cx="20" cy="20" rx="18.5" ry="6.2" stroke="#c79a58" stroke-width="1.4" transform="rotate(-24 20 20)"/></svg>
+          <span style="font-family:var(--serif); font-size:22px; color:#f7f3ec;">Halo Estates</span>
+        </div>
+        <p style="font-size:13.5px; line-height:1.7; color:#8b93a5; max-width:34ch;">Ringfront residences and moon-side estates across the Saturn system. Membership by introduction.</p>
+      </div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Explore</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="results.html?category=rings" style="color:#aeb6c6;">The Rings</a><a href="results.html?category=moons" style="color:#aeb6c6;">The Moons</a><a href="index.html#neighborhoods" style="color:#aeb6c6;">Neighborhoods</a><a href="compare.html" style="color:#aeb6c6;">Compare</a></div></div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Agency</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="about.html" style="color:#aeb6c6;">About</a><a href="advisors.html" style="color:#aeb6c6;">Advisors</a><a href="contact.html" style="color:#aeb6c6;">Contact</a></div></div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Legal</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="terms.html" style="color:#aeb6c6;">Terms</a><a href="privacy.html" style="color:#aeb6c6;">Privacy</a></div></div>
+    </div>
+    <div style="border-top:1px solid rgba(199,154,88,0.18);"><div style="max-width:1240px; margin:0 auto; padding:18px 32px; font-size:12.5px; color:#6c7488;">© 2276 Halo Estates. A fictional showcase. Views of the rings subject to orbital season.</div></div>
+  </footer>
+
+</div>
+</body>
+</html>
