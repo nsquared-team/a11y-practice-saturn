@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--
+  Discover Saturn — Privacy Notice (Halo Estates).
+  A placeholder footer page for the fictional showcase — no real legal text.
+  Reuses the site's shared (intentionally-inaccessible) chrome, so it carries the
+  same document-level failures as every other page: #4 no lang on <html>,
+  #6 generic <title>, #12 focus removed, #2 unlabeled header search. No new
+  catalogued issues are seeded in the body. DO NOT "fix" the shared chrome —
+  it is intentionally consistent with the rest of the fixture.
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- SEEDED ISSUE #6 (WCAG 2.4.2) generic-title: same generic site title on every page. Target fix: unique, descriptive <title>. -->
+<title>Halo Estates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e1526; --ink-2:#18213b; --gold:#b0823f; --gold-2:#c79a58; --amber:#e7cfa3;
+    --paper:#f7f3ec; --paper-2:#efe8db; --card:#fffdf9; --text:#1b2233; --muted:#6c7280;
+    --line:#e4ddcf; --serif:'Cormorant Garamond',Georgia,serif; --sans:'Hanken Grotesk',system-ui,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--paper); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  /* SEEDED ISSUE #12 (WCAG 2.4.7) focus-not-visible: focus outline removed site-wide on purpose. Target fix: restore a visible :focus-visible indicator. */
+  *:focus, *:focus-visible{ outline:none !important; }
+  a{ color:var(--gold); text-decoration:none; }
+  a:hover{ color:var(--text); text-decoration:underline; }
+  input, button, select, textarea{ font-family:inherit; }
+  ::selection{ background:var(--amber); color:var(--ink); }
+</style>
+</head>
+<body>
+<div style="min-height:100vh; background:var(--paper); display:flex; flex-direction:column;">
+
+  <!-- ============ HEADER / NAV (shared) ============ -->
+  <header style="position:sticky; top:0; z-index:40; background:rgba(14,21,38,0.96); backdrop-filter:saturate(140%) blur(6px); border-bottom:1px solid rgba(199,154,88,0.22);">
+    <div style="max-width:1240px; margin:0 auto; padding:0 32px; height:74px; display:flex; align-items:center; gap:28px;">
+      <a href="index.html" style="display:flex; align-items:center; gap:11px; color:#f7f3ec;">
+        <svg width="26" height="26" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="9" fill="#c79a58"/><ellipse cx="20" cy="20" rx="18.5" ry="6.2" stroke="#c79a58" stroke-width="1.4" transform="rotate(-24 20 20)"/></svg>
+        <span style="font-family:var(--serif); font-size:23px; font-weight:600; letter-spacing:0.04em; color:#f7f3ec;">Halo Estates</span>
+      </a>
+      <nav style="display:flex; gap:26px; margin-left:14px;">
+        <a href="#" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">The Rings</a>
+        <a href="#" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">The Moons</a>
+        <a href="index.html#neighborhoods" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">Neighborhoods</a>
+        <a href="about.html" style="color:#d7d2c6; font-size:14px; letter-spacing:0.02em;">About</a>
+      </nav>
+      <div style="margin-left:auto; display:flex; align-items:center; gap:14px;">
+        <!-- SEEDED ISSUE #2 (WCAG 3.3.2 / 4.1.2) label-missing: search input has placeholder only, no associated <label>. -->
+        <div data-a11y-issue="unlabeled-search-input" style="display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.07); border:1px solid rgba(199,154,88,0.28); border-radius:999px; padding:8px 14px;">
+          <svg width="15" height="15" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="#c79a58" stroke-width="1.6"/><path d="M13.5 13.5L17 17" stroke="#c79a58" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <input type="text" placeholder="Search rings, moons, listings" style="background:transparent; border:none; color:#f7f3ec; font-size:13px; width:190px;">
+        </div>
+        <a href="#" style="color:#d7d2c6; font-size:14px;">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="flex:1;">
+    <!-- breadcrumb -->
+    <div style="max-width:820px; margin:0 auto; padding:26px 32px 6px; font-size:13px; color:var(--muted);">
+      <a href="index.html" style="color:var(--muted);">Home</a>
+      <span style="margin:0 8px; color:var(--gold-2);">»</span>
+      <span style="color:var(--text);">Privacy</span>
+    </div>
+
+    <!-- ============ TITLE ============ -->
+    <section style="max-width:820px; margin:0 auto; padding:14px 32px 0;">
+      <div style="font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">Legal</div>
+      <h1 style="font-family:var(--serif); font-weight:500; font-size:56px; line-height:1.02; margin:0; color:var(--ink); letter-spacing:-0.01em;">Privacy Notice</h1>
+      <div style="font-family:var(--serif); font-style:italic; font-size:23px; color:var(--muted); margin-top:10px; max-width:34ch;">What Halo Estates would know about you — and how quietly it would keep it.</div>
+    </section>
+
+    <!-- ============ BODY ============ -->
+    <section style="max-width:820px; margin:0 auto; padding:34px 32px 80px;">
+
+      <!-- fictional-showcase note -->
+      <div style="background:var(--card); border:1px solid var(--line); border-left:3px solid var(--gold); border-radius:12px; padding:22px 26px; margin-bottom:38px;">
+        <p style="font-size:15.5px; line-height:1.75; color:#3a4152; margin:0;">Halo Estates is a <strong style="color:var(--ink);">fictional showcase</strong>. There is no agency, no ringfront villa, and no data collected — this page is placeholder text standing in for a real privacy notice, written in the spirit of the world rather than the letter of the law.</p>
+      </div>
+
+      <h2 style="font-family:var(--serif); font-weight:500; font-size:30px; margin:0 0 12px; color:var(--ink);">What we would gather</h2>
+      <p style="font-size:16px; line-height:1.8; color:#3a4152; margin:0 0 30px; max-width:64ch;">Were Halo Estates real, we would note the orbits you lingered on, the residences you saved to your favourites, and whether you searched "ring view" at an hour that rather suggests you mean it. Today, none of that leaves your own browser.</p>
+
+      <h2 style="font-family:var(--serif); font-weight:500; font-size:30px; margin:0 0 12px; color:var(--ink);">Discretion, always</h2>
+      <p style="font-size:16px; line-height:1.8; color:#3a4152; margin:0 0 30px; max-width:64ch;">Ownership across the outer worlds is a private matter — it is one of our three principles, and it would extend to whatever we learned of you. No introduction made without your word; no viewing spoken of beyond your advisor.</p>
+
+      <h2 style="font-family:var(--serif); font-weight:500; font-size:30px; margin:0 0 12px; color:var(--ink);">Cookies &amp; crumbs</h2>
+      <p style="font-size:16px; line-height:1.8; color:#3a4152; margin:0 0 30px; max-width:64ch;">Any residences you favourite are kept locally, in your own browser's memory — the way a good concierge holds a preference in mind without ever writing it down. Clear your browser data and they are forgotten entirely.</p>
+
+      <h2 style="font-family:var(--serif); font-weight:500; font-size:30px; margin:0 0 12px; color:var(--ink);">Your choices</h2>
+      <p style="font-size:16px; line-height:1.8; color:#3a4152; margin:0 0 30px; max-width:64ch;">Decline the Halo circle, keep your favourites to yourself, or simply drift on to the next orbit. Nothing here follows you home across the rings.</p>
+
+      <h2 style="font-family:var(--serif); font-weight:500; font-size:30px; margin:0 0 12px; color:var(--ink);">Reaching us</h2>
+      <p style="font-size:16px; line-height:1.8; color:#3a4152; margin:0 0 8px; max-width:64ch;">For everything a real notice would send to a real address: there isn't one. This is a demonstration site — please, enjoy the view of the rings.</p>
+
+      <div style="margin-top:44px; padding-top:22px; border-top:1px solid var(--line); font-size:13.5px; color:var(--muted); font-style:italic; font-family:var(--serif);">Last reviewed at ring-rise, in the 2276 season.</div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER (shared) ============ -->
+  <footer style="background:var(--ink); color:#aeb6c6;">
+    <div style="max-width:1240px; margin:0 auto; padding:52px 32px 40px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:11px; margin-bottom:14px;">
+          <svg width="24" height="24" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="9" fill="#c79a58"/><ellipse cx="20" cy="20" rx="18.5" ry="6.2" stroke="#c79a58" stroke-width="1.4" transform="rotate(-24 20 20)"/></svg>
+          <span style="font-family:var(--serif); font-size:22px; color:#f7f3ec;">Halo Estates</span>
+        </div>
+        <p style="font-size:13.5px; line-height:1.7; color:#8b93a5; max-width:34ch;">Ringfront residences and moon-side estates across the Saturn system. Membership by introduction.</p>
+      </div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Explore</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="#" style="color:#aeb6c6;">The Rings</a><a href="#" style="color:#aeb6c6;">The Moons</a><a href="index.html#neighborhoods" style="color:#aeb6c6;">Neighborhoods</a></div></div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Agency</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="about.html" style="color:#aeb6c6;">About</a><a href="#" style="color:#aeb6c6;">Advisors</a><a href="#" style="color:#aeb6c6;">Contact</a></div></div>
+      <div><div style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#c79a58; margin-bottom:14px;">Legal</div><div style="display:flex; flex-direction:column; gap:9px; font-size:14px;"><a href="#" style="color:#aeb6c6;">Terms</a><a href="privacy.html" style="color:#aeb6c6;">Privacy</a></div></div>
+    </div>
+    <div style="border-top:1px solid rgba(199,154,88,0.18);"><div style="max-width:1240px; margin:0 auto; padding:18px 32px; font-size:12.5px; color:#6c7488;">© 2276 Halo Estates. A fictional showcase. Views of the rings subject to orbital season.</div></div>
+  </footer>
+
+</div>
+</body>
+</html>
