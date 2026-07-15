@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__aaardvark__list_workspaces",
+      "mcp__aaardvark__list_sites",
+      "mcp__aaardvark__get_site_summary",
+      "mcp__aaardvark__list_issues"
+    ]
+  }
+}
