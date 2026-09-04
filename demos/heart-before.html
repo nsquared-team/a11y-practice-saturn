@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<!--
+  Halo Estates / Discover Saturn - Circle mastermind DEMO page.
+
+  NOT part of the seeded fixture. These pages are teaching aids built for the
+  2026-09-04 Circle mastermind ("Semantic HTML: What to Ask For and How to Check It").
+  Unlike the fixture pages at the site root, these are deliberately clean except for
+  the one thing each page is demonstrating, so a scan isolates the teaching point.
+
+  See demos/README.md before changing anything here.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The save toggle as shipped · Halo Estates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&amp;family=Hanken+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e1526; --ink-2:#18213b; --gold:#7f5a1c; --gold-2:#c79a58; --amber:#e7cfa3;
+    --paper:#f7f3ec; --paper-2:#efe8db; --card:#fffdf9; --text:#1b2233; --muted:#5c6272;
+    --line:#e4ddcf; --ok:#1f6b3a; --no:#9a2617;
+    --serif:'Cormorant Garamond',Georgia,serif; --sans:'Hanken Grotesk',system-ui,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--paper); color:var(--text); font-family:var(--sans);
+        -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; line-height:1.6; }
+  a{ color:var(--gold); }
+  a:hover{ color:var(--text); }
+  input, button, select, textarea{ font-family:inherit; font-size:inherit; }
+
+  /* Focus ring: dark ink core with a cream halo so it stays visible on paper,
+     on the ink header, and on top of photography. */
+  :focus:not(:focus-visible){ outline:none; }
+  *:focus-visible{ outline:3px solid var(--ink); outline-offset:2px;
+                   box-shadow:0 0 0 6px rgba(255,253,249,0.95); }
+  .on-dark *:focus-visible{ outline-color:#fffdf9; box-shadow:0 0 0 6px rgba(14,21,38,0.95); }
+
+  /* Visually hidden (clip-path technique). */
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+            clip-path:inset(50%); white-space:nowrap; border:0; }
+
+  .skip{ position:absolute; left:8px; top:-60px; z-index:100; background:var(--ink); color:#fffdf9;
+         padding:12px 20px; border-radius:0 0 10px 10px; transition:top .12s; }
+  .skip:focus{ top:0; color:#fffdf9; }
+
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 32px; }
+
+  .demobar{ background:var(--ink); color:var(--amber); font-size:13px; letter-spacing:0.05em; }
+  .demobar .wrap{ padding-top:11px; padding-bottom:11px; display:flex; gap:14px;
+                  flex-wrap:wrap; align-items:baseline; }
+  .demobar strong{ color:#fffdf9; letter-spacing:0.14em; text-transform:uppercase; font-size:11.5px; }
+  .demobar a{ color:var(--amber); }
+  .demobar a:hover{ color:#fffdf9; }
+
+  header.site .bar{ background:var(--ink-2); }
+  header.site .bar .wrap{ height:70px; display:flex; align-items:center; gap:24px; }
+  .brand{ display:flex; align-items:center; gap:11px; color:#f7f3ec; text-decoration:none; }
+  .brand span{ font-family:var(--serif); font-size:23px; font-weight:600; letter-spacing:0.04em; }
+  header.site .bar nav{ margin-left:auto; display:flex; gap:24px; font-size:14px; }
+  header.site .bar nav a{ color:#e6e2d8; }
+  header.site .bar nav a:hover{ color:#fffdf9; }
+
+  h1{ font-family:var(--serif); font-weight:500; font-size:52px; line-height:1.06;
+      margin:0 0 18px; letter-spacing:-0.01em; }
+  .lede{ font-size:18px; color:var(--muted); max-width:62ch; margin:0 0 6px; }
+  .eyebrow{ font-size:12px; letter-spacing:0.2em; text-transform:uppercase;
+            color:var(--gold); margin-bottom:16px; }
+
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:15px; padding:26px 28px; }
+  .panel h2{ font-family:var(--serif); font-weight:600; font-size:29px; margin:0 0 14px; }
+  .panel h3{ font-size:14px; letter-spacing:0.12em; text-transform:uppercase;
+             color:var(--muted); margin:0 0 12px; font-weight:600; }
+
+  .panel h2.lab, h2.lab, .lab{ font-family:var(--sans); font-size:14px; letter-spacing:0.12em; text-transform:uppercase;
+        color:var(--muted); margin:0 0 12px; font-weight:600; }
+
+  .btn{ display:inline-block; font-size:15px; padding:12px 26px; border-radius:999px;
+        border:1px solid var(--ink); background:var(--ink); color:#fffdf9;
+        text-decoration:none; cursor:pointer; text-align:center; }
+  .btn:hover{ background:var(--ink-2); color:#fffdf9; }
+  .btn-ghost{ background:transparent; color:var(--ink); }
+  .btn-ghost:hover{ background:var(--paper-2); color:var(--ink); }
+
+  .mono{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:13px; }
+  code{ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+        background:var(--paper-2); padding:2px 6px; border-radius:5px; font-size:0.92em; }
+
+  .yes{ color:var(--ok); font-weight:600; }
+  .nope{ color:var(--no); font-weight:600; }
+
+  footer.site{ background:var(--ink); color:#aeb6c6; margin-top:70px; font-size:13.5px; }
+  footer.site .wrap{ padding-top:30px; padding-bottom:30px; }
+  footer.site a{ color:#c79a58; }
+  footer.site a:hover{ color:#fffdf9; }
+
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; animation:none !important; } }
+
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:15px;
+         overflow:hidden; display:flex; flex-direction:column; max-width:400px; }
+  .card .shot{ position:relative; }
+  .card img{ display:block; width:100%; height:250px; object-fit:cover; }
+  /* Solid ink puck rather than the fixture's translucent one, so the icon keeps
+     a reliable non-text contrast ratio on this page. */
+  .fav{ position:absolute; top:14px; right:14px; width:44px; height:44px; border-radius:999px;
+        background:var(--ink); display:flex; align-items:center; justify-content:center;
+        cursor:pointer; border:1px solid rgba(255,255,255,0.28); }
+  .badge{ position:absolute; left:14px; bottom:14px; background:var(--ink); color:var(--amber);
+          font-size:11px; letter-spacing:0.12em; text-transform:uppercase; padding:6px 12px;
+          border-radius:999px; border:1px solid rgba(199,154,88,0.45); }
+  .card .body{ padding:22px 24px 24px; }
+  .card .loc{ font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+              color:var(--gold); margin:0 0 8px; }
+  .card h2{ font-family:var(--serif); font-weight:500; font-size:27px; margin:0 0 6px;
+            color:var(--ink); }
+  .card .meta{ font-size:14px; color:var(--muted); margin:0 0 18px; }
+  .card .row{ display:flex; align-items:center; justify-content:space-between; gap:14px; }
+  .card .price{ font-family:var(--serif); font-size:26px; font-weight:600; color:var(--ink); }
+  .card .explore{ font-size:14px; color:var(--gold); border:1px solid var(--gold);
+                  padding:9px 18px; border-radius:999px; text-decoration:none; }
+  .card .explore:hover{ background:var(--ink); border-color:var(--ink); color:#fffdf9; }
+
+  .split{ display:grid; grid-template-columns:400px 1fr; gap:30px; align-items:start; margin-top:32px; }
+  @media (max-width:900px){ .split{ grid-template-columns:1fr; } }
+  .scoreboard{ list-style:none; margin:0; padding:0; }
+  .scoreboard li{ display:flex; justify-content:space-between; gap:18px; align-items:baseline;
+                  padding:13px 0; border-bottom:1px solid var(--line); font-size:15.5px; }
+  .scoreboard li:last-child{ border-bottom:0; }
+  .scoreboard .v{ font-family:var(--serif); font-size:25px; font-weight:600; }
+  details{ margin-top:26px; border:1px solid var(--line); border-radius:11px;
+           background:var(--paper-2); padding:16px 20px; }
+  summary{ cursor:pointer; font-weight:600; font-size:15px; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="site on-dark">
+  <div class="demobar">
+    <div class="wrap">
+      <strong>Circle mastermind demo</strong>
+      <span>Slide 18 &middot; the scan flags it</span>
+      <span><a href="index.html">All demo pages</a></span>
+    </div>
+  </div>
+  <div class="bar">
+   <div class="wrap">
+    <a class="brand" href="../index.html">
+      <svg width="27" height="27" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="9" fill="#c79a58"/><ellipse cx="20" cy="20" rx="18.5" ry="6.2" stroke="#c79a58" stroke-width="1.4" transform="rotate(-24 20 20)"/></svg>
+      <span>Halo Estates</span>
+    </a>
+    <nav aria-label="Demo">
+      <a href="index.html">Demo index</a>
+      <a href="../index.html">Back to the site</a>
+    </nav>
+   </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="wrap" style="padding-top:56px;">
+    <p class="eyebrow">Slide 18</p>
+    <h1>Step one: scan it. It flags.</h1>
+    <p class="lede">One property card, lifted off the Halo Estates homepage with its save toggle
+    exactly as shipped: a <code>div</code> with <code>role="button"</code>, no accessible name,
+    no <code>tabindex</code>, and a click handler.</p>
+    <p class="lede" style="margin-top:14px;">Everything else on this page is already correct, so a
+    scan has exactly one thing to find. An icon-only control with a role and no name is a markup
+    fact, and machines are genuinely good at markup facts.</p>
+
+    <div class="split">
+      
+      <article class="card on-dark">
+        <div class="shot">
+          <img src="../saturn/images/ringfront-flagship-estate-exterior.png"
+               alt="Aurelia seen from the ring plane at dusk, a low glass villa on a shelf of ice with Saturn filling the sky behind it.">
+          <div class="fav" role="button" data-fav>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20.5l-1.4-1.28C6 15.1 3 12.4 3 9.1 3 6.5 5 4.5 7.6 4.5c1.5 0 2.9.7 3.9 1.9 1-1.2 2.4-1.9 3.9-1.9C21.9 4.5 21 6.5 21 9.1c0 3.3-3 6-7.6 10.12L12 20.5z" stroke="#f7f3ec" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="badge">Ringfront Flagship</span>
+        </div>
+        <div class="body">
+          <p class="loc">B Ring</p>
+          <h2>Aurelia</h2>
+          <p class="meta">5 bed &middot; 6 bath &middot; 8,200 ft&sup2;</p>
+          <div class="row">
+            <span class="price">$48,500,000</span>
+            <a class="explore" href="../property-detail.html">Explore Aurelia</a>
+          </div>
+        </div>
+      </article>
+      <div>
+        <section class="panel" aria-labelledby="sb-h">
+          <h2 class="lab" id="sb-h">What the control does</h2>
+          
+      <ul class="scoreboard">
+        <li><span>Current state</span><span class="v" id="stateVal">Not saved</span></li>
+        <li><span>Reachable with Tab</span><span class="v nope">No</span></li>
+        <li><span>Has an accessible name</span><span class="v nope">No</span></li>
+        <li><span>Times activated by mouse</span><span class="v" id="mouseVal">0</span></li>
+        <li><span>Enter or Space presses received</span><span class="v" id="keyVal">0</span></li>
+        <li><span>Times activated by keyboard</span><span class="v nope" id="keyActVal">0</span></li>
+      </ul>
+      <p style="margin:20px 0 0;"><button type="button" class="btn btn-ghost" id="resetCard"
+         style="font-size:13.5px; padding:8px 18px;">Reset the card</button></p>
+        </section>
+        <section class="panel" style="margin-top:26px; background:var(--paper-2);" aria-labelledby="try-h">
+          <h2 class="lab" id="try-h" style="color:var(--text);">Try it in this order</h2>
+          <ol style="margin:0; padding-left:20px; font-size:15.5px;">
+            <li style="margin-bottom:8px;">Click the heart with the mouse. It fills. It works.</li>
+            <li style="margin-bottom:8px;">Now press Tab from the top of the page and keep going.
+            Focus moves through the skip link, the header, the card image link and the Explore link.
+            It never lands on the heart, because there is no <code>tabindex</code>.</li>
+            <li>A screen reader reaches it and says &ldquo;button&rdquo;, and nothing else.</li>
+          </ol>
+        </section>
+        
+      <section class="panel" style="margin-top:26px;" aria-labelledby="fm-h">
+        <h2 class="lab" id="fm-h">Focus monitor</h2>
+        <p style="margin:0 0 14px; color:var(--muted); font-size:14.5px;">Shows what the browser
+        thinks currently has keyboard focus, so the room can follow a Tab demo on a shared screen.</p>
+        <p class="mono" id="focusNow" style="margin:0; padding:14px 16px; background:var(--paper-2);
+           border-radius:9px; min-height:22px;" aria-live="polite">Nothing focused yet. Press Tab.</p>
+      </section>
+
+        <details>
+          <summary>What is deliberately wrong on this page (open after the scan, not before)</summary>
+          <p style="margin:14px 0 0; font-size:15px;">One seeded failure only: the save toggle has
+          <code>role="button"</code> with no accessible name.
+          <strong>4.1.2 Name, Role, Value, Level A.</strong> It is also unreachable by keyboard
+          (<strong>2.1.1, Level A</strong>) and its saved state is carried by fill colour alone
+          (<strong>1.4.1, Level A</strong>), but those two are behaviour, not markup, and the scan
+          will not raise them.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p style="margin:0;">Teaching page for the AAArdvark Circle mastermind, 4 September 2026.
+    Not part of the Halo Estates fixture. <a href="index.html">All demo pages</a>.</p>
+  </div>
+</footer>
+<script>(function(){
+  var fav = document.querySelector('[data-fav]');
+  var saved = false, mouseActs = 0, keyPresses = 0;
+
+  function paint(){
+    var svg = fav.querySelector('svg path');
+    svg.setAttribute('fill', saved ? '#c79a58' : 'none');
+    set('stateVal', saved ? 'Saved' : 'Not saved');
+    set('mouseVal', mouseActs);
+    set('keyVal', keyPresses);
+    set('keyActVal', 0);
+  }
+  function set(id, v){ var e = document.getElementById(id); if(e) e.textContent = v; }
+
+  // The one and only handler on this control: a click listener. Exactly as shipped.
+  fav.addEventListener('click', function(){ saved = !saved; mouseActs++; paint(); });
+
+  // Observation only. This listener never activates the control; it just counts the
+  // keys that reached it, so the room can see the presses land and do nothing.
+  fav.addEventListener('keydown', function(e){
+    if(e.key === ' ' || e.key === 'Enter'){ keyPresses++; paint(); }
+  });
+
+  var reset = document.getElementById('resetCard');
+  if(reset) reset.addEventListener('click', function(){
+    saved = false; mouseActs = 0; keyPresses = 0; paint();
+  });
+  paint();
+
+  // ---- Focus monitor: describes the focused element the way a screen reader roughly would.
+  (function(){
+    var out = document.getElementById('focusNow');
+    if(!out) return;
+    var ROLES = {A:'link', BUTTON:'button', INPUT:'input', SELECT:'select',
+                 TEXTAREA:'text field', SUMMARY:'summary'};
+    function roleOf(el){
+      var r = el.getAttribute('role');
+      if(r) return r;
+      if(el.tagName === 'A') return el.hasAttribute('href') ? 'link' : 'generic';
+      return ROLES[el.tagName] || el.tagName.toLowerCase();
+    }
+    function nameOf(el){
+      var n = el.getAttribute('aria-label');
+      if(n) return n.trim();
+      var lb = el.getAttribute('aria-labelledby');
+      if(lb){
+        var t = lb.split(/\s+/).map(function(id){
+          var e = document.getElementById(id); return e ? e.textContent : '';
+        }).join(' ').trim();
+        if(t) return t;
+      }
+      var txt = (el.textContent || '').replace(/\s+/g,' ').trim();
+      if(txt) return txt;
+      if(el.getAttribute('title')) return el.getAttribute('title');
+      return '';
+    }
+    function describe(el){
+      if(!el || el === document.body) return 'Nothing focused. Press Tab.';
+      var name = nameOf(el), role = roleOf(el);
+      return name ? ('"' + name + '", ' + role) : ('(no accessible name), ' + role);
+    }
+    document.addEventListener('focusin', function(e){ out.textContent = describe(e.target); });
+    document.addEventListener('focusout', function(){
+      window.setTimeout(function(){
+        if(document.activeElement === document.body) out.textContent = 'Nothing focused. Press Tab.';
+      }, 0);
+    });
+  })();
+})();</script>
+</body>
+</html>
