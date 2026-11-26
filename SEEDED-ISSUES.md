@@ -161,7 +161,10 @@ non-semantic breadcrumb/footer). Page-specific notes:
   opened with a keyboard (2.1.1), nothing exposes a control or an expanded state, and the
   "+"/"−" icon is read as part of each heading (4.1.2); answers are hidden with `max-height`,
   so Tab lands on the two links inside closed panels, where focus is invisible (2.4.7), and
-  screen readers read closed answers. A scanner is unlikely to flag any of it.
+  screen readers read closed answers. **AAArdvark rescan 2026-11-25:** flagged only the
+  symptom, as a needs-review 2.4.11 "focused element covered" warning on the two links in
+  closed answers (plus the site-wide gold link contrast). It did not flag keyboard
+  operability or the missing control/state.
   The page also has a contact form, but per the source it seeds **no new labelled-form
   issue**; the form controls' state depends on the shared chrome. (Worth a closer manual look
   if you expect form-label seeds here — none were tagged.)
