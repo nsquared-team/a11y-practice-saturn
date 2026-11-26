@@ -34,6 +34,15 @@
   input, button, select, textarea{ font-family:inherit; }
   ::selection{ background:var(--amber); color:var(--ink); }
 </style>
+<style>
+  /* Seeded issue #16 (accordion): panels are hidden with max-height, which hides them
+     from sight only. Links inside stay in the tab order and the text stays in the
+     accessibility tree. Intentional: do not fix. */
+  .halo-faq-answer{ max-height:0; overflow:hidden; transition:max-height .3s ease; }
+  .halo-faq-answer.is-open{ max-height:30rem; }
+  .halo-faq-q::after{ content:"+"; float:right; color:var(--gold); }
+  .halo-faq-q.is-open::after{ content:"\2212"; }
+</style>
 </head>
 <body>
 <div style="min-height:100vh; background:var(--paper); display:flex; flex-direction:column;">
@@ -144,6 +153,47 @@
 
       <div style="margin-top:44px; padding-top:22px; border-top:1px solid var(--line); font-size:13.5px; color:var(--muted); font-style:italic; font-family:var(--serif);">No message here is sent, and no line here is answered — this is a demonstration. Please, enjoy the view of the rings.</div>
     </section>
+
+    <!-- ============ FAQ ============ -->
+    <!-- Seeded issue #16 (accordion): h3 click targets with no button, no tabindex, no
+         aria-expanded; answers hidden with max-height so their links stay focusable while
+         closed. Added 2026-11-25 for the 12/2 "Building an Accessible Accordion" livestream.
+         Intentional: do not fix. -->
+    <section style="max-width:820px; margin:0 auto; padding:10px 32px 30px;">
+      <h2 style="font-family:var(--serif); font-weight:500; font-size:30px; margin:0 0 12px; color:var(--ink);">Before you enquire</h2>
+      <div class="halo-faq" style="border-bottom:1px solid var(--line);">
+        <div style="border-top:1px solid var(--line);">
+          <h3 class="halo-faq-q" data-a11y-issue="accordion-not-keyboard-operable accordion-no-expanded-state" style="font-family:var(--serif); font-weight:500; font-size:21px; margin:0; padding:18px 4px; color:var(--ink); cursor:pointer;">How do I arrange a viewing?</h3>
+          <div class="halo-faq-answer" id="faq-viewing">
+            <p style="font-size:15.5px; line-height:1.75; color:#3a4152; margin:0 4px 18px; max-width:64ch;">Viewings on Titan and the ring habitats are arranged through your advisor, usually within one orbit of your first enquiry. Start with the <a href="#" data-a11y-issue="accordion-hidden-content-focusable" style="color:var(--gold);">viewing request form</a> and we will match you to the right advisor.</p>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--line);">
+          <h3 class="halo-faq-q" data-a11y-issue="accordion-not-keyboard-operable accordion-no-expanded-state" style="font-family:var(--serif); font-weight:500; font-size:21px; margin:0; padding:18px 4px; color:var(--ink); cursor:pointer;">Can I buy without visiting Saturn first?</h3>
+          <div class="halo-faq-answer" id="faq-remote">
+            <p style="font-size:15.5px; line-height:1.75; color:#3a4152; margin:0 4px 18px; max-width:64ch;">Many of our buyers do. Every listing has a full holo-tour, and an advisor can walk any property with you live from the ring-side office.</p>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--line);">
+          <h3 class="halo-faq-q" data-a11y-issue="accordion-not-keyboard-operable accordion-no-expanded-state" style="font-family:var(--serif); font-weight:500; font-size:21px; margin:0; padding:18px 4px; color:var(--ink); cursor:pointer;">What does the ring maintenance fee cover?</h3>
+          <div class="halo-faq-answer" id="faq-fees">
+            <p style="font-size:15.5px; line-height:1.75; color:#3a4152; margin:0 4px 18px; max-width:64ch;">Debris sweeping, orbit trimming, and the promenade lights. The full <a href="#" data-a11y-issue="accordion-hidden-content-focusable" style="color:var(--gold);">fee schedule</a> is set each orbit by the B Ring residents' council.</p>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--line);">
+          <h3 class="halo-faq-q" data-a11y-issue="accordion-not-keyboard-operable accordion-no-expanded-state" style="font-family:var(--serif); font-weight:500; font-size:21px; margin:0; padding:18px 4px; color:var(--ink); cursor:pointer;">How long is the transit from Earth?</h3>
+          <div class="halo-faq-answer" id="faq-transit">
+            <p style="font-size:15.5px; line-height:1.75; color:#3a4152; margin:0 4px 18px; max-width:64ch;">About eleven months on a standard liner, or a little over seven on the express shuttle that leaves Lunar Gateway twice a year.</p>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--line);">
+          <h3 class="halo-faq-q" data-a11y-issue="accordion-not-keyboard-operable accordion-no-expanded-state" style="font-family:var(--serif); font-weight:500; font-size:21px; margin:0; padding:18px 4px; color:var(--ink); cursor:pointer;">Do you work with buyers outside the Saturn system?</h3>
+          <div class="halo-faq-answer" id="faq-outer">
+            <p style="font-size:15.5px; line-height:1.75; color:#3a4152; margin:0 4px 18px; max-width:64ch;">Yes. Advisors on the Jovian desk handle enquiries from Jupiter's moons, and correspondence from Earth reaches us in about eighty minutes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- ============ FOOTER (shared) ============ -->
@@ -164,5 +214,14 @@
   </footer>
 
 </div>
+<script>
+  // Seeded issue #16 (accordion): mouse-only toggle. Intentional: do not fix.
+  document.querySelectorAll('.halo-faq-q').forEach(function (q) {
+    q.addEventListener('click', function () {
+      q.classList.toggle('is-open');
+      q.nextElementSibling.classList.toggle('is-open');
+    });
+  });
+</script>
 </body>
 </html>

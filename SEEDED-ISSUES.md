@@ -45,8 +45,9 @@ seed catalog, but real and present on every page):
 | Breadcrumb not marked up as `<nav>`/list; literal `»` read aloud | 1.3.1 Info & Relationships | A | Manual |
 | Footer link groups are `<div>` stacks, not lists/`<nav>` | 1.3.1 Info & Relationships | A | Manual |
 
-> Note: The four static "content" pages (**about, advisors, contact, privacy, terms**) seed
-> **no new body-level catalogued issues** — their only numbered seeds are the shared-chrome
+> Note: The static "content" pages (**about, advisors, privacy, terms**) seed
+> **no new body-level catalogued issues**. **contact** did not either until 2026-11-25, when
+> seed #16 (a broken FAQ accordion) was added; see Section C — their only numbered seeds are the shared-chrome
 > four (#2/#4/#6/#12). The contrast, skip-link, and breadcrumb items above are the latent
 > extras that ride along in the chrome. The interactive pages (**index, results,
 > property-detail, compare**) seed additional body issues, listed below.
@@ -72,6 +73,8 @@ The interactive pages tag elements with `data-a11y-issue="<slug>"`. Consolidated
 | #12 | focus outline removed | 2.4.7 | AA | all |
 | #13 | `*-no-alt-judgment` — hero image missing `alt` (judgment case) | 1.1.1 | A | index, property-detail, about |
 | #15 | `unlabeled-*` `<select>` — beds / sort, no accessible name | 3.3.2 / 4.1.2 | A | results, compare |
+
+| #16 | `accordion-*` — FAQ accordion: `h3` click targets (`accordion-not-keyboard-operable`, `accordion-no-expanded-state`), answers hidden with `max-height` so their links stay focusable while closed (`accordion-hidden-content-focusable`). Added 2026-11-25 for the 12/2 accordion livestream. | 2.1.1 / 4.1.2 / 2.4.7 | A / AA | contact |
 
 *(No #10 or #14 slug was found in the source.)*
 
@@ -153,7 +156,13 @@ These pages seed **only the shared-chrome four** (#2 search, #4 lang, #6 title, 
 plus the latent chrome extras from Section A (contrast, no skip link, `href="#"` Sign In,
 non-semantic breadcrumb/footer). Page-specific notes:
 
-- **contact.html** — has a contact form, but per the source it seeds **no new labelled-form
+- **contact.html** — **seed #16 added 2026-11-25:** a "Before you enquire" FAQ accordion
+  built from `h3` click targets. Manual-only failures: the questions can't be reached or
+  opened with a keyboard (2.1.1), nothing exposes a control or an expanded state, and the
+  "+"/"−" icon is read as part of each heading (4.1.2); answers are hidden with `max-height`,
+  so Tab lands on the two links inside closed panels, where focus is invisible (2.4.7), and
+  screen readers read closed answers. A scanner is unlikely to flag any of it.
+  The page also has a contact form, but per the source it seeds **no new labelled-form
   issue**; the form controls' state depends on the shared chrome. (Worth a closer manual look
   if you expect form-label seeds here — none were tagged.)
 - **advisors.html** — advisor "avatars" are text initials, not images, so no alt issues; clean
